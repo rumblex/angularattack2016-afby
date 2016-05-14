@@ -10,14 +10,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var grid_item_component_1 = require('../grid-item/grid-item.component');
+var item_1 = require('../grid-item/item');
 var GridListComponent = (function () {
     function GridListComponent() {
     }
+    GridListComponent.prototype.ngOnInit = function () {
+        this.itemList = [
+            new item_1.Item("Search", "Search for books", "image", "Search"),
+            new item_1.Item("Your Books", "view all your books", "image", "View")
+        ];
+    };
     GridListComponent = __decorate([
         core_1.Component({
             selector: 'grid-list',
             directives: [grid_item_component_1.GridItemComponent],
-            template: "\n    <div class=\"row\">     \n        <grid-item></grid-item>\n        <grid-item></grid-item>\n        <grid-item></grid-item>\n        <grid-item></grid-item>\n    </div>\n    "
+            template: "\n    <div class=\"row\">     \n        <div *ngFor=\"let item of itemList\">\n            <grid-item *ngIf=\"item.description != '' \" [item] = item></grid-item>\n        </div>\n    </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], GridListComponent);

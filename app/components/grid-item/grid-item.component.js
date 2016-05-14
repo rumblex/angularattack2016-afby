@@ -9,13 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var item_1 = require('./item');
 var GridItemComponent = (function () {
     function GridItemComponent() {
     }
+    GridItemComponent.prototype.ngOnInit = function () {
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', item_1.Item)
+    ], GridItemComponent.prototype, "item", void 0);
     GridItemComponent = __decorate([
         core_1.Component({
             selector: 'grid-item',
-            template: "\n    <div class=\"col-sm-6 col-md-4\">\n    <div class=\"thumbnail\">\n      <img src=\"...\" alt=\"...\">\n      <div class=\"caption\">\n        <h3>Thumbnail label</h3>\n        <p>...</p>\n        <p><a href=\"#\" class=\"btn btn-primary\" role=\"button\">Button</a> <a href=\"#\" class=\"btn btn-default\" role=\"button\">Button</a></p>\n      </div>\n    </div>\n    <div>\n    "
+            template: "\n    <div class=\"col-sm-6 col-md-6\">\n      <div class=\"thumbnail\">\n        <img *ngIf=\"item.imageSrc != '' \" src=\"{{item.imageSrc}}\" alt=\"could not load image\">\n        <div class=\"caption\">\n          <h3>{{item.header}}</h3>\n          <p>{{item.description}}</p>\n          <p>\n           <a *ngIf=\"item.action != '' \" class=\"btn btn-primary\" role=\"button\">{{item.action}}</a>\n          </p>\n        </div>\n      </div>\n    <div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], GridItemComponent);

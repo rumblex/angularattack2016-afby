@@ -17,9 +17,9 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            templateUrl: 'app/app.template.html',
             directives: [router_deprecated_1.ROUTER_DIRECTIVES, grid_list_component_1.GridListComponent],
-            providers: [router_deprecated_1.ROUTER_PROVIDERS]
+            providers: [router_deprecated_1.ROUTER_PROVIDERS],
+            template: "\n    <div class=\"jumbotron\">\n    <h2>Shared Library</h2>\n    </div>\n    <grid-list></grid-list>"
         }),
         router_deprecated_1.RouteConfig([]), 
         __metadata('design:paramtypes', [])
