@@ -4,7 +4,9 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,19 +30,19 @@ public class BookRestService {
 	@Autowired
 	UserService usrSer;
 	
-	@RequestMapping(value= "/addBook", method = RequestMethod.POST,
-			consumes={MediaType.APPLICATION_JSON_VALUE})
-	public Book addBook(@RequestBody Book b){
+	@RequestMapping(value= "/add", method = RequestMethod.POST,
+			consumes="application/json")
+	public ResponseEntity addBook(@RequestBody Book b){
 		b=bookSer.addBook(b);
-		return b;
+		return new ResponseEntity(b, HttpStatus.OK);
 	}
 	
-	@RequestMapping("/getBooks")
+	@RequestMapping("/getAll")
 	public Iterable<BookES> getBooks() throws Exception{
 		return bookSer.getAllBooks();
 	}
 	
-	@RequestMapping("/getLibrary/{id}")
+	@RequestMapping("/getUserLibrary/{id}")
 	public Collection<Book> getLibrary(@PathVariable Long id){
 		return bookSer.getLibrary(usrSer.getUserById(id));
 	}
