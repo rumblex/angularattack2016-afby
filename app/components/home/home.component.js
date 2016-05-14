@@ -16,7 +16,8 @@ var HomeComponent = (function () {
     }
     HomeComponent.prototype.ngOnInit = function () {
         this.itemList = [
-            new item_1.Item("Search", "Search for books", "image", "BookCenter")
+            new item_1.Item("Search", "Search for books", "image", "BookCenter"),
+            new item_1.Item("Your Books", "View your books", "image", "BookCenter")
         ];
     };
     HomeComponent = __decorate([

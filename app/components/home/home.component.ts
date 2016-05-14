@@ -15,7 +15,8 @@ export class HomeComponent implements OnInit {
     
     ngOnInit(){
         this.itemList = [
-            new Item("Search", "Search for books", "image", "BookCenter")            
+            new Item("Search", "Search for books", "image", "BookCenter"),
+            new Item("Your Books", "View your books", "image", "BookCenter")          
         ]
     }
 }
