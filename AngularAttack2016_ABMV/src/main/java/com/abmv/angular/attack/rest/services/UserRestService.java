@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.abmv.angular.attack.entities.User;
+import com.abmv.angular.attack.entities.sql.User;
 import com.abmv.angular.attack.service.UserService;
 
 @RestController
@@ -25,5 +25,7 @@ public class UserRestService {
 	public Iterable<User> getAllUser(){
 		return usrSer.getAllUsers();
 	}
+	
+	
 	
 }
