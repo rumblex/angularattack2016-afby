@@ -3,12 +3,10 @@ package com.abmv.angular.attack.repository.es;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import org.elasticsearch.action.ListenableActionFuture;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.index.query.FuzzyLikeThisFieldQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
@@ -16,15 +14,19 @@ import org.springframework.stereotype.Repository;
 
 import com.abmv.angular.attack.entities.es.BookES;
 import com.abmv.angular.attack.util.LibConstants;
+import com.abmv.angular.attack.util.LibraryUtil;
 
 @Repository
 public class LibraryBookRepositoryES {
 
 	@Autowired
-	BookEsRepositoryDefault bookEsRepo;
+	EsBookRepositoryDefault bookEsRepo;
 	
 	@Autowired
 	Client esClient;
+	
+	@Autowired
+	ElasticsearchTemplate esTemplate;
 	
 	public BookES save(BookES book){
 		return  bookEsRepo.save(book);
@@ -38,11 +40,14 @@ public class LibraryBookRepositoryES {
 		return getSearchRequestBuilder().setTypes(LibConstants.BOOK_TYPE);
 	}
 	
-	public List<BookES> filter() throws InterruptedException, ExecutionException{
-		//getSearchRequestBuilderBook().
-		/*QueryBuilder qb=QueryBuilders.fuzzyQuery("_all", "tok");*/
-		FuzzyLikeThisFieldQueryBuilder qb = QueryBuilders.fuzzyLikeThisFieldQuery("_all").likeText("%tok%");
+	public List<BookES> fuzzyFilter(String text) throws InterruptedException, ExecutionException{
+		FuzzyLikeThisFieldQueryBuilder qb = QueryBuilders.fuzzyLikeThisFieldQuery("_all").likeText(text);
 		SearchResponse searchResponse = getSearchRequestBuilderBook().setQuery(qb).execute().get();
-		return null;
+		List<BookES> listResult=LibraryUtil.convertResponseToObjects(searchResponse);
+		return listResult;
+	}
+
+	public Iterable<BookES> findAll() {
+		return bookEsRepo.findAll();
 	}
 }

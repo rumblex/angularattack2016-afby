@@ -18,6 +18,12 @@ public class UserRestService {
 		User u=new User();
 		u.setContactNo("+91 22");
 		u.setEmailId("bb@ttt.com");
+		usrSer.registerUser(u);
+		
+		u=new User();
+		u.setContactNo("+91 78787887");
+		u.setEmailId("baaab@ttt.com");
+		
 		return usrSer.registerUser(u);
 	}
 	

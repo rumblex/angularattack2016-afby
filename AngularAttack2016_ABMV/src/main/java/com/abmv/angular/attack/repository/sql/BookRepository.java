@@ -10,7 +10,8 @@ import com.abmv.angular.attack.entities.sql.User;
 public interface BookRepository extends CrudRepository<Book, Long> {
 
 
-	//@Query("select b from Book b where b.owner.id = (:bookId)")
 	Collection<Book> findByOwner(User u);
+	
+	Collection<Book> findByTitle(String title);
 	
 }
