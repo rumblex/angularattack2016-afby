@@ -10,19 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
-var grid_list_component_1 = require('./components/grid-list/grid-list.component');
+var book_center_component_1 = require('./components/books/book-center.component');
+var home_component_1 = require('./components/home/home.component');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(router) {
+        this.router = router;
     }
+    AppComponent.prototype.onclick = function () {
+        this.router.navigate(['Home']);
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            directives: [router_deprecated_1.ROUTER_DIRECTIVES, grid_list_component_1.GridListComponent],
-            providers: [router_deprecated_1.ROUTER_PROVIDERS],
-            template: "\n    <div class=\"jumbotron\">\n    <h2>Shared Library</h2>\n    </div>\n    <grid-list></grid-list>"
+            directives: [router_deprecated_1.ROUTER_DIRECTIVES],
+            template: "\n    <div (click)=\"onclick()\" class=\"jumbotron\">\n        <h2>Shared Library</h2>\n    </div>\n    <router-outlet></router-outlet>\n    "
         }),
-        router_deprecated_1.RouteConfig([]), 
-        __metadata('design:paramtypes', [])
+        router_deprecated_1.RouteConfig([
+            { path: '/books/...', name: 'BookCenter', component: book_center_component_1.BookCenterComponent },
+            { path: '/', name: 'Home', component: home_component_1.HomeComponent, useAsDefault: true }
+        ]), 
+        __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], AppComponent);
     return AppComponent;
 }());

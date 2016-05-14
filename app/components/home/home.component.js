@@ -9,26 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var grid_item_component_1 = require('../grid-item/grid-item.component');
-var item_1 = require('../grid-item/item');
-var GridListComponent = (function () {
-    function GridListComponent() {
+var grid_list_component_1 = require('./grid-list/grid-list.component');
+var item_1 = require('./grid-item/item');
+var HomeComponent = (function () {
+    function HomeComponent() {
     }
-    GridListComponent.prototype.ngOnInit = function () {
+    HomeComponent.prototype.ngOnInit = function () {
         this.itemList = [
-            new item_1.Item("Search", "Search for books", "image", "Search"),
-            new item_1.Item("Your Books", "view all your books", "image", "View")
+            new item_1.Item("Search", "Search for books", "image", "BookCenter")
         ];
     };
-    GridListComponent = __decorate([
+    HomeComponent = __decorate([
         core_1.Component({
-            selector: 'grid-list',
-            directives: [grid_item_component_1.GridItemComponent],
-            template: "\n    <div class=\"row\">     \n        <div *ngFor=\"let item of itemList\">\n            <grid-item *ngIf=\"item.description != '' \" [item] = item></grid-item>\n        </div>\n    </div>\n    "
+            selector: 'home',
+            directives: [grid_list_component_1.GridListComponent],
+            template: "<grid-list [itemList]=\"itemList\"></grid-list>"
         }), 
         __metadata('design:paramtypes', [])
-    ], GridListComponent);
-    return GridListComponent;
+    ], HomeComponent);
+    return HomeComponent;
 }());
-exports.GridListComponent = GridListComponent;
-//# sourceMappingURL=grid-list.component.js.map
+exports.HomeComponent = HomeComponent;
+//# sourceMappingURL=home.component.js.map

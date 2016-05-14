@@ -1,19 +1,29 @@
 import {Component} from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
-import {GridListComponent} from './components/grid-list/grid-list.component';
+import {Router,RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import {BookCenterComponent} from './components/books/book-center.component';
+import {HomeComponent} from './components/home/home.component';
 
 @Component({
-    selector: 'my-app',    
-    directives: [ROUTER_DIRECTIVES,GridListComponent],
-    providers: [ROUTER_PROVIDERS],
-    template:`
-    <div class="jumbotron">
-    <h2>Shared Library</h2>
+    selector: 'my-app',
+    directives: [ROUTER_DIRECTIVES],
+    template: `
+    <div (click)="onclick()" class="jumbotron">
+        <h2>Shared Library</h2>
     </div>
-    <grid-list></grid-list>`
-    
+    <router-outlet></router-outlet>
+    `
+
 })
 @RouteConfig([
- // {path: '/heroes',name: 'Heroes',component: HeroesComponent}
+    { path: '/books/...', name: 'BookCenter', component: BookCenterComponent },
+    { path: '/', name: 'Home', component: HomeComponent, useAsDefault: true }
 ])
-export class AppComponent { }
+export class AppComponent { 
+    
+    constructor(private router: Router){}
+    
+    onclick(){
+        this.router.navigate(['Home'] )
+    }
+    
+}

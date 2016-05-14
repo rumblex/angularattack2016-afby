@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit,Input} from '@angular/core';
 import {GridItemComponent} from '../grid-item/grid-item.component';
 import {Item} from '../grid-item/item';
 
@@ -15,15 +15,12 @@ import {Item} from '../grid-item/item';
 })
 export class GridListComponent implements OnInit {
 
-    private itemList: Array<Item>;
+    @Input() private itemList: Array<Item>;
 
     constructor() { }
 
     ngOnInit() {
-        this.itemList = [
-            new Item("Search", "Search for books", "image", "Search"),
-            new Item("Your Books", "view all your books", "image", "View")
-        ]
+        
     }
 
 }
