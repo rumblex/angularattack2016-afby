@@ -9,22 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_deprecated_1 = require('@angular/router-deprecated');
-var grid_list_component_1 = require('./components/grid-list/grid-list.component');
-var AppComponent = (function () {
-    function AppComponent() {
+var GridItemComponent = (function () {
+    function GridItemComponent() {
     }
-    AppComponent = __decorate([
+    GridItemComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            templateUrl: 'app/app.template.html',
-            directives: [router_deprecated_1.ROUTER_DIRECTIVES, grid_list_component_1.GridListComponent],
-            providers: [router_deprecated_1.ROUTER_PROVIDERS]
-        }),
-        router_deprecated_1.RouteConfig([]), 
+            selector: 'grid-item',
+            template: "\n    <div class=\"col-sm-6 col-md-4\">\n    <div class=\"thumbnail\">\n      <img src=\"...\" alt=\"...\">\n      <div class=\"caption\">\n        <h3>Thumbnail label</h3>\n        <p>...</p>\n        <p><a href=\"#\" class=\"btn btn-primary\" role=\"button\">Button</a> <a href=\"#\" class=\"btn btn-default\" role=\"button\">Button</a></p>\n      </div>\n    </div>\n    <div>\n    "
+        }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], GridItemComponent);
+    return GridItemComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.GridItemComponent = GridItemComponent;
+//# sourceMappingURL=grid-item.component.js.map
