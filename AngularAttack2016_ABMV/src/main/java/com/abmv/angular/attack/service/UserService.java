@@ -1,6 +1,6 @@
 package com.abmv.angular.attack.service;
 
-import com.abmv.angular.attack.entities.User;
+import com.abmv.angular.attack.entities.sql.User;
 
 public interface UserService {
 
@@ -9,4 +9,5 @@ public interface UserService {
 	User getUserById(Long id);
 	
 	Iterable<User> getAllUsers();
+	
 }

@@ -1,6 +1,5 @@
-package com.abmv.angular.attack.entities;
+package com.abmv.angular.attack.entities.sql;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.ElementCollection;
@@ -10,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -23,7 +23,7 @@ public class Book {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	private Long bookId;
 	
 	private String title;
 	
@@ -36,6 +36,7 @@ public class Book {
 	private Integer rating;
 	
 	@ManyToOne
+	@JoinColumn(name="owner_id")
 	private User owner;
 	
 	@OneToOne

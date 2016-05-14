@@ -1,12 +1,9 @@
-package com.abmv.angular.attack.entities;
-
-import java.util.Set;
+package com.abmv.angular.attack.entities.sql;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +21,4 @@ public class User {
 	
 	private String emailId;
 	
-	@OneToMany
-	private Set<Book> library;
 }

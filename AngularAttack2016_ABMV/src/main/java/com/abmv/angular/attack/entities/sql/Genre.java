@@ -1,4 +1,4 @@
-package com.abmv.angular.attack.entities;
+package com.abmv.angular.attack.entities.sql;
 
 public enum Genre {
 

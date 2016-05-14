@@ -1,10 +1,13 @@
 package com.abmv.angular.attack.service.impl;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.abmv.angular.attack.entities.User;
-import com.abmv.angular.attack.repository.UserRepository;
+import com.abmv.angular.attack.entities.sql.Book;
+import com.abmv.angular.attack.entities.sql.User;
+import com.abmv.angular.attack.repository.sql.UserRepository;
 import com.abmv.angular.attack.service.UserService;
 
 @Service
@@ -27,5 +30,7 @@ public class UserServiceImpl implements UserService {
 	public Iterable<User> getAllUsers() {
 		return usrRepo.findAll();
 	}
+
+	
 	
 }
