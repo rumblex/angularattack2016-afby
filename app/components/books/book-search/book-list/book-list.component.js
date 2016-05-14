@@ -23,7 +23,7 @@ var BookListComponent = (function () {
         core_1.Component({
             selector: 'book-list',
             directives: [book_item_component_1.BookItemComponent],
-            template: "\n    <div class=\"row\">     \n        <div *ngFor=\"let item of itemList\">\n            <book-item [item] = item></book-item>\n        </div>\n    </div>\n    "
+            template: "\n    <div class=\"row\">     \n        <div *ngFor=\"let item of itemList\">\n            <book-item [book] = item></book-item>\n        </div>\n    </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], BookListComponent);

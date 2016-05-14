@@ -10,8 +10,9 @@ import {Book} from '../../book';
         <div class="caption">
           <fieldset>
             <legend>Book Details</legend>
-            <h3>Title: {{item.title}}</h3>
-            <p>Author: {{item.authorName}}</p>
+            <h3>Title: {{book.title}}</h3>
+            <p>Author: {{book.authorName}}</p>
+             <p>ID: {{book.id}}</p>
           </fieldset>
         </div>
       </div>
@@ -20,7 +21,7 @@ import {Book} from '../../book';
 })
 export class BookItemComponent implements OnInit { 
     
-    @Input() private item:Book;
+    @Input() private book:Book;
     
     constructor(private router: Router){}
     
@@ -28,6 +29,6 @@ export class BookItemComponent implements OnInit {
     }
     
     onclick(){
-      //this.router.navigate([this.item.action] )
+      this.router.navigate( ['BookDetailComponent', { id: this.book.id }] );
     }
 }

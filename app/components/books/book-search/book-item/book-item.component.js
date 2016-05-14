@@ -18,16 +18,16 @@ var BookItemComponent = (function () {
     BookItemComponent.prototype.ngOnInit = function () {
     };
     BookItemComponent.prototype.onclick = function () {
-        //this.router.navigate([this.item.action] )
+        this.router.navigate(['BookDetailComponent', { id: this.book.id }]);
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', book_1.Book)
-    ], BookItemComponent.prototype, "item", void 0);
+    ], BookItemComponent.prototype, "book", void 0);
     BookItemComponent = __decorate([
         core_1.Component({
             selector: 'book-item',
-            template: "\n    <div class=\"col-sm-6 col-md-6\" (click)=\"onclick()\">\n      <div class=\"thumbnail\">\n        <div class=\"caption\">\n          <fieldset>\n            <legend>Book Details</legend>\n            <h3>Title: {{item.title}}</h3>\n            <p>Author: {{item.authorName}}</p>\n          </fieldset>\n        </div>\n      </div>\n    <div>\n    "
+            template: "\n    <div class=\"col-sm-6 col-md-6\" (click)=\"onclick()\">\n      <div class=\"thumbnail\">\n        <div class=\"caption\">\n          <fieldset>\n            <legend>Book Details</legend>\n            <h3>Title: {{book.title}}</h3>\n            <p>Author: {{book.authorName}}</p>\n             <p>ID: {{book.id}}</p>\n          </fieldset>\n        </div>\n      </div>\n    <div>\n    "
         }), 
         __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], BookItemComponent);

@@ -10,19 +10,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var Observable_1 = require('rxjs/Observable');
+var user_1 = require('../users/user');
 var book_1 = require('./book');
 var BookService = (function () {
     function BookService() {
         this.listBooks = [
-            new book_1.Book({ id: 1, title: 'abc' }),
-            new book_1.Book({ id: 2, title: 'pqr' }),
-            new book_1.Book({ id: 3, title: 'xyz' }),
-            new book_1.Book({ id: 4, title: 'lmn' }),
+            new book_1.Book({ id: 1, title: 'abc', authorName: 'author 111' }),
+            new book_1.Book({ id: 2, title: 'pqr', authorName: 'author 211' }),
+            new book_1.Book({ id: 3, title: 'xyz', authorName: 'author 311' }),
+            new book_1.Book({ id: 4, title: 'lmn', authorName: 'author 411' }),
+        ];
+        this.listUser = [
+            new user_1.LibUser("test user", "mumbai", "1111111111111"),
+            new user_1.LibUser("john doe", "mumbai", "1111111111111"),
+            new user_1.LibUser("jane doe", "mumbai", "1111111111111"),
+            new user_1.LibUser("random user", "mumbai", "1111111111111"),
+            new user_1.LibUser("bob smith", "mumbai", "1111111111111"),
+            new user_1.LibUser("Yun Lee", "mumbai", "1111111111111"),
+            new user_1.LibUser("Aaron", "mumbai", "1111111111111")
         ];
     }
     BookService.prototype.getBooks = function (searchString) {
         return Observable_1.Observable.of(this.listBooks);
         ;
+    };
+    BookService.prototype.getBook = function (id) {
+        return Observable_1.Observable.of(this.listBooks[+id - 1]);
+    };
+    BookService.prototype.getUsersForBook = function (id) {
+        return Observable_1.Observable.of(this.listUser);
     };
     BookService = __decorate([
         core_1.Injectable(), 

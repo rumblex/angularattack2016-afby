@@ -9,18 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_deprecated_1 = require('@angular/router-deprecated');
+var book_service_1 = require('../book.service');
 var BookDetailComponent = (function () {
-    function BookDetailComponent() {
-        this.active = true;
+    function BookDetailComponent(_bookService, routeParams) {
+        this._bookService = _bookService;
+        this.routeParams = routeParams;
     }
     BookDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.id = this.routeParams.get('id');
+        this._bookService.getBook(this.id)
+            .subscribe(function (data) { _this.book = data; });
+        this._bookService.getUsersForBook(this.id)
+            .subscribe(function (data) { _this.listUser = data; });
     };
     BookDetailComponent = __decorate([
         core_1.Component({
             selector: 'book-detail',
             templateUrl: 'app/components/books/book-detail/book-detail.template.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [book_service_1.BookService, router_deprecated_1.RouteParams])
     ], BookDetailComponent);
     return BookDetailComponent;
 }());

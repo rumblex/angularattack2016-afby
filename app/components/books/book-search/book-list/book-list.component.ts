@@ -8,7 +8,7 @@ import {Book} from '../../book';
     template: `
     <div class="row">     
         <div *ngFor="let item of itemList">
-            <book-item [item] = item></book-item>
+            <book-item [book] = item></book-item>
         </div>
     </div>
     `

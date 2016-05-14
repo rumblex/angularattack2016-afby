@@ -9,20 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_deprecated_1 = require('@angular/router-deprecated');
 var book_service_1 = require('../book.service');
 var book_list_component_1 = require('./book-list/book-list.component');
 var BookSearchComponent = (function () {
-    function BookSearchComponent(_bookService) {
+    function BookSearchComponent(_bookService, router, routeParams) {
         this._bookService = _bookService;
+        this.router = router;
+        this.routeParams = routeParams;
     }
     BookSearchComponent.prototype.ngOnInit = function () {
+        this.doSearch();
     };
     BookSearchComponent.prototype.onSubmit = function () {
+        this.router.navigate(['BookSearchComponent', { query: this.textSearch }]);
+        this.doSearch();
+    };
+    BookSearchComponent.prototype.doSearch = function () {
         var _this = this;
-        this._bookService.getBooks(this.textSearch)
-            .subscribe(function (data) {
-            _this.listResults = data;
-        });
+        this.textSearch = this.routeParams.get('query');
+        if (this.textSearch) {
+            this._bookService.getBooks(this.textSearch)
+                .subscribe(function (data) {
+                _this.listResults = data;
+            });
+        }
+    };
+    BookSearchComponent.prototype.onClear = function () {
+        this.listResults = null;
+        this.textSearch = "";
+        this.router.navigate(['BookSearchComponent', { query: this.textSearch }]);
     };
     BookSearchComponent = __decorate([
         core_1.Component({
@@ -30,7 +46,7 @@ var BookSearchComponent = (function () {
             templateUrl: 'app/components/books/book-search/book-search.template.html',
             directives: [book_list_component_1.BookListComponent]
         }), 
-        __metadata('design:paramtypes', [book_service_1.BookService])
+        __metadata('design:paramtypes', [book_service_1.BookService, router_deprecated_1.Router, router_deprecated_1.RouteParams])
     ], BookSearchComponent);
     return BookSearchComponent;
 }());
