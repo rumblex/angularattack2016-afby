@@ -2,145 +2,153 @@
     <div class="col-sm-6 col-md-4" (click)="onclick()">
         <div class="thumbnail">
             <img src="../../../images/searchbooks.jpg" alt="could not load image">
+            <span class="col-sm-6 col-md-12"></span>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-4">
+                    <a class="btn btn-primary" role="button">Search
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!user" class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src="../../../images/mybooks.jpg" alt="could not load image">
+            <span class="col-sm-6 col-md-12"></span>
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-3">
-                    <a class="btn btn-primary" role="button">Search
-                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                    </a>
-                    <p>Search for books</p>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" (click)="resetLogin()" data-target="#cLoginForm">Login</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" (click)="resetLogin()" data-target="#cSignUpForm">Sign Up</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-sm-6 col-md-4">
+    <div *ngIf="user" class="col-sm-6 col-md-4" (click)="onclickUserView()">
         <div class="thumbnail">
-            <div *ngIf="!user">
-                <button type="button" class="btn btn-default" data-toggle="modal" (click)="resetLogin()" data-target="#cLoginForm">Login</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" (click)="resetLogin()" data-target="#cSignUpForm">Sign Up</button>
-            </div>
-            <div *ngIf="user" (click)="onclickUserView()">
-                <img src="../../../images/mybooks.jpg" alt="could not load image">
-                <div class="row">
-                    <div class="col-lg-6 col-lg-offset-3">
-                        <a class="btn btn-primary" role="button">View
+            <img src="../../../images/mybooks.jpg" alt="could not load image">
+            <span class="col-sm-6 col-md-12"></span>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-4">
+                    <a class="btn btn-primary" role="button">View
                             <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
                         </a>
-                        <p>View your books</p>
-                        <button type="button" class="btn btn-default" (click)="onLogout()">Log out</button>
-                    </div>
+                    <button type="button" class="btn btn-primary" (click)="onLogout()">Log out</button>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-4" (click)="onclickAboutUs()">
-            <div class="thumbnail">
-                <img src="../../../images/aboutus.jpg" alt="could not load image">
-                <div class="row">
-                    <div class="col-lg-6 col-lg-offset-3">
-                        <a class="btn btn-primary">About Us
+    </div>
+    <div class="col-sm-6 col-md-4" (click)="onclickAboutUs()">
+        <div class="thumbnail">
+            <img src="../../../images/aboutus.jpg" alt="could not load image">
+            <span class="col-sm-6 col-md-12"></span>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-4">
+                    <a class="btn btn-primary">About Us
                             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                         </a>
-                        <p>Click here to know more</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span class="col-sm-6 col-md-12"></span>
+    <div class="col-sm-6 col-md-6">
+        <div class="thumbnail">
+            <h3>Recently added</h3>
+            <new-books></new-books>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-6">
+        <div class="thumbnail">
+            <h3>Have you read?</h3>
+            <random-books></random-books>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for log in -->
+<div class="modal fade" id="cLoginForm" tabindex="-1" role="dialog" aria-labelledby="loginLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="loginLabel">Login Form</h4>
+            </div>
+            <div class="modal-body">
+
+                <form *ngIf="active" (ngSubmit)="onLogin()" #mylogin="ngForm">
+                    <div class="form-group">
+                        <label>UserName:</label>
+                        <input type="text" class="form-control" required [(ngModel)]="userName" ngControl="cUserName" #cUserName="ngForm">
+                        <div [hidden]="cUserName.valid || cUserName.pristine" class="alert alert-danger">
+                            UserName is required
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-6">
-            <div class="thumbnail">
-                <h3>Recently added</h3>
-                <new-books></new-books>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-6">
-            <div class="thumbnail">
-                <h3>Have you read?</h3>
-                <random-books></random-books>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal for log in -->
-    <div class="modal fade" id="cLoginForm" tabindex="-1" role="dialog" aria-labelledby="loginLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="loginLabel">Login Form</h4>
-                </div>
-                <div class="modal-body">
-
-                    <form *ngIf="active" (ngSubmit)="onLogin()" #mylogin="ngForm">
-                        <div class="form-group">
-                            <label>UserName:</label>
-                            <input type="text" class="form-control" required [(ngModel)]="userName" ngControl="cUserName" #cUserName="ngForm">
-                            <div [hidden]="cUserName.valid || cUserName.pristine" class="alert alert-danger">
-                                UserName is required
-                            </div>
+                    <div class="form-group">
+                        <label>Password:</label>
+                        <input type="password" class="form-control" required [(ngModel)]="password" ngControl="cPassword" #cPassword="ngForm">
+                        <div [hidden]="cPassword.valid || cPassword.pristine" class="alert alert-danger">
+                            Password is required
                         </div>
-                        <div class="form-group">
-                            <label>Password:</label>
-                            <input type="password" class="form-control" required [(ngModel)]="password" ngControl="cPassword" #cPassword="ngForm">
-                            <div [hidden]="cPassword.valid || cPassword.pristine" class="alert alert-danger">
-                                Password is required
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-default" [disabled]="!mylogin.form.valid">Login</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-default" [disabled]="!mylogin.form.valid">Login</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Modal for sign up -->
-    <div class="modal fade" id="cSignUpForm" tabindex="-1" role="dialog" aria-labelledby="signUpLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="signUpLabel">Sign Up Form</h4>
-                </div>
-                <div class="modal-body">
+<!-- Modal for sign up -->
+<div class="modal fade" id="cSignUpForm" tabindex="-1" role="dialog" aria-labelledby="signUpLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="signUpLabel">Sign Up Form</h4>
+            </div>
+            <div class="modal-body">
 
-                    <form *ngIf="active" (ngSubmit)="onSignUp()" #mySignUp="ngForm">
-                        <div class="form-group">
-                            <label>UserName:</label>
-                            <input type="text" class="form-control" required [(ngModel)]="userName" ngControl="cUserName" #cUserName="ngForm">
-                            <div [hidden]="cUserName.valid || cUserName.pristine" class="alert alert-danger">
-                                UserName is required
-                            </div>
+                <form *ngIf="active" (ngSubmit)="onSignUp()" #mySignUp="ngForm">
+                    <div class="form-group">
+                        <label>UserName:</label>
+                        <input type="text" class="form-control" required [(ngModel)]="userName" ngControl="cUserName" #cUserName="ngForm">
+                        <div [hidden]="cUserName.valid || cUserName.pristine" class="alert alert-danger">
+                            UserName is required
                         </div>
-                        <div class="form-group">
-                            <label>Password:</label>
-                            <input type="password" class="form-control" required [(ngModel)]="password" ngControl="cPassword" #cPassword="ngForm">
-                            <div [hidden]="cPassword.valid || cPassword.pristine" class="alert alert-danger">
-                                Password is required
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password:</label>
+                        <input type="password" class="form-control" required [(ngModel)]="password" ngControl="cPassword" #cPassword="ngForm">
+                        <div [hidden]="cPassword.valid || cPassword.pristine" class="alert alert-danger">
+                            Password is required
                         </div>
-                        <div class="form-group">
-                            <label>Confirm Password:</label>
-                            <input type="password" class="form-control" required [(ngModel)]="confirmPassword" ngControl="cConfPassword" #cConfPassword="ngForm">
-                            <div [hidden]="cConfPassword.valid || cConfPassword.pristine" class="alert alert-danger">
-                                Password is required
-                            </div>
-                            <div [hidden]="!(password != confirmPassword) || confirmPassword==''" class="alert alert-danger">
-                                Passwords do not match
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password:</label>
+                        <input type="password" class="form-control" required [(ngModel)]="confirmPassword" ngControl="cConfPassword" #cConfPassword="ngForm">
+                        <div [hidden]="cConfPassword.valid || cConfPassword.pristine" class="alert alert-danger">
+                            Password is required
                         </div>
-                        <div class="form-group">
-                            <label>Contact:</label>
-                            <input type="email" class="form-control" required [(ngModel)]="contact" ngControl="cContact" #cContact="ngForm">
-                            <div [hidden]="cContact.valid || cContact.pristine" class="alert alert-danger">
-                                Contact is required
-                            </div>
+                        <div [hidden]="!(password != confirmPassword) || confirmPassword==''" class="alert alert-danger">
+                            Passwords do not match
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-default" [disabled]="!mySignUp.form.valid || password != confirmPassword">Sign Up</button>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact:</label>
+                        <input type="email" class="form-control" required [(ngModel)]="contact" ngControl="cContact" #cContact="ngForm">
+                        <div [hidden]="cContact.valid || cContact.pristine" class="alert alert-danger">
+                            Contact is required
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-default" [disabled]="!mySignUp.form.valid || password != confirmPassword">Sign Up</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
