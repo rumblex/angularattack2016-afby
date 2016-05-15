@@ -77,5 +77,9 @@ export class BookService {
         this.listBooks.pop();
         return Observable.of(book);
     }
+    
+    getTopNewBooks(): Observable<Array<Book>> {
+        return Observable.of(this.listBooks);
+    }
 
 }

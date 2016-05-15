@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var book_center_component_1 = require('./components/books/book-center.component');
 var home_component_1 = require('./components/home/home.component');
+var book_service_1 = require('./components/books/book.service');
 var AppComponent = (function () {
     function AppComponent(router) {
         this.router = router;
@@ -23,6 +24,7 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             directives: [router_deprecated_1.ROUTER_DIRECTIVES],
+            providers: [book_service_1.BookService],
             template: "\n    <div (click)=\"onclick()\" class=\"jumbotron\">\n        <h2>Shared Library</h2>\n    </div>\n    <router-outlet></router-outlet>\n    "
         }),
         router_deprecated_1.RouteConfig([

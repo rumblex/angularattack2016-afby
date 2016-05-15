@@ -3,12 +3,10 @@ import { RouteConfig, RouterOutlet } from '@angular/router-deprecated';
 import { BookDetailComponent }   from './book-detail/book-detail.component';
 import { BookSearchComponent } from './book-search/book-search/book-search.component';
 import { BookUserComponent } from './book-search/book-user-list/book-user-list.component';
-import { BookService } from './book.service';
 
 @Component({
   template:  `<router-outlet></router-outlet>`,
-  directives: [RouterOutlet],
-  providers:  [BookService]
+  directives: [RouterOutlet]
 })
 @RouteConfig([
   {path:'/',    name: 'BookSearchComponent',   component: BookSearchComponent, useAsDefault: true},

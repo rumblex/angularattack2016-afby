@@ -10,27 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
-var new_books_component_1 = require('./lists/new-books.component');
-var HomeComponent = (function () {
-    function HomeComponent(_router) {
+var ListBookComponent = (function () {
+    function ListBookComponent(_router) {
         this._router = _router;
     }
-    HomeComponent.prototype.ngOnInit = function () { };
-    HomeComponent.prototype.onclickUserView = function () {
-        this._router.navigate(['BookCenter', 'BookUserComponent']);
+    ListBookComponent.prototype.ngOnInit = function () { };
+    ListBookComponent.prototype.navigate = function (id) {
+        this._router.navigate(['BookCenter', 'BookDetailComponent', { 'id': id }]);
     };
-    HomeComponent.prototype.onclick = function () {
-        this._router.navigate(['BookCenter']);
-    };
-    HomeComponent = __decorate([
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], ListBookComponent.prototype, "newBooks", void 0);
+    ListBookComponent = __decorate([
         core_1.Component({
-            selector: 'home',
-            directives: [new_books_component_1.NewBooksComponent],
-            templateUrl: "app/components/home/home.template.html"
+            selector: 'list-book',
+            template: "\n        <ul class=\"list-group\">\n            <li *ngFor=\"let book of newBooks\" (click)=\"navigate(book.id)\" class=\"list-group-item\">{{book.title}}</li>\n        </ul>\n        "
         }), 
         __metadata('design:paramtypes', [router_deprecated_1.Router])
-    ], HomeComponent);
-    return HomeComponent;
+    ], ListBookComponent);
+    return ListBookComponent;
 }());
-exports.HomeComponent = HomeComponent;
-//# sourceMappingURL=home.component.js.map
+exports.ListBookComponent = ListBookComponent;
+//# sourceMappingURL=list-book.component.js.map

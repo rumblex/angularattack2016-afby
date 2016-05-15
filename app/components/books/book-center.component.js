@@ -13,15 +13,13 @@ var router_deprecated_1 = require('@angular/router-deprecated');
 var book_detail_component_1 = require('./book-detail/book-detail.component');
 var book_search_component_1 = require('./book-search/book-search/book-search.component');
 var book_user_list_component_1 = require('./book-search/book-user-list/book-user-list.component');
-var book_service_1 = require('./book.service');
 var BookCenterComponent = (function () {
     function BookCenterComponent() {
     }
     BookCenterComponent = __decorate([
         core_1.Component({
             template: "<router-outlet></router-outlet>",
-            directives: [router_deprecated_1.RouterOutlet],
-            providers: [book_service_1.BookService]
+            directives: [router_deprecated_1.RouterOutlet]
         }),
         router_deprecated_1.RouteConfig([
             { path: '/', name: 'BookSearchComponent', component: book_search_component_1.BookSearchComponent, useAsDefault: true },

@@ -71,6 +71,9 @@ var BookService = (function () {
         this.listBooks.pop();
         return Observable_1.Observable.of(book);
     };
+    BookService.prototype.getTopNewBooks = function () {
+        return Observable_1.Observable.of(this.listBooks);
+    };
     BookService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_common_service_1.HttpServies])
