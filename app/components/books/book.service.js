@@ -12,8 +12,10 @@ var core_1 = require('@angular/core');
 var Observable_1 = require('rxjs/Observable');
 var user_1 = require('../users/user');
 var book_1 = require('./book');
+var http_common_service_1 = require('../http-common.service');
 var BookService = (function () {
-    function BookService() {
+    function BookService(_httpService) {
+        this._httpService = _httpService;
         this.listBooks = [
             new book_1.Book({ id: 1, title: 'abc', authorName: 'author 111' }),
             new book_1.Book({ id: 2, title: 'pqr', authorName: 'author 211' }),
@@ -31,8 +33,8 @@ var BookService = (function () {
         ];
     }
     BookService.prototype.getBooks = function (searchString) {
-        return Observable_1.Observable.of(this.listBooks);
-        ;
+        return this._httpService.callSearch("book/getBooks");
+        //return Observable.of(this.listBooks);
     };
     BookService.prototype.getBook = function (id) {
         return Observable_1.Observable.of(this.listBooks[+id - 1]);
@@ -42,7 +44,7 @@ var BookService = (function () {
     };
     BookService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_common_service_1.HttpServies])
     ], BookService);
     return BookService;
 }());

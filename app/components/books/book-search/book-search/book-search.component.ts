@@ -3,11 +3,13 @@ import {Router, RouteParams} from '@angular/router-deprecated';
 import {Book} from '../../book';
 import {BookService} from '../../book.service';
 import {BookListComponent} from './../book-list/book-list.component';
+import {HttpServies} from '../../../http-common.service';
 
 @Component({
     selector: 'book-search',
-    templateUrl: 'app/components/books/book-search/book-search/book-search.template.html',
-    directives: [BookListComponent]
+    templateUrl: 'app/components/books/book-search/book-search.template.html',
+    directives: [BookListComponent],
+    providers:[BookService,HttpServies]
 })
 export class BookSearchComponent implements OnInit {
 

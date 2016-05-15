@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
-var book_service_1 = require('../../book.service');
-var book_list_component_1 = require('./../book-list/book-list.component');
+var book_service_1 = require('../book.service');
+var book_list_component_1 = require('./book-list/book-list.component');
 var BookSearchComponent = (function () {
     function BookSearchComponent(_bookService, router, routeParams) {
         this._bookService = _bookService;
@@ -43,7 +43,7 @@ var BookSearchComponent = (function () {
     BookSearchComponent = __decorate([
         core_1.Component({
             selector: 'book-search',
-            templateUrl: 'app/components/books/book-search/book-search/book-search.template.html',
+            templateUrl: 'app/components/books/book-search/book-search.template.html',
             directives: [book_list_component_1.BookListComponent]
         }), 
         __metadata('design:paramtypes', [book_service_1.BookService, router_deprecated_1.Router, router_deprecated_1.RouteParams])

@@ -5,9 +5,16 @@ import { HTTP_PROVIDERS,Http }    from '@angular/http';
 
 import {LibUser} from '../users/user';
 import { Book } from './book';
+import {HttpServies} from '../http-common.service';
+
+
 
 @Injectable()
 export class BookService {
+    
+    constructor(private _httpService:HttpServies){
+        
+    }
     
     listBooks:Array<Book> =[
         new Book({id:1,title:'abc',authorName:'author 111'}),
@@ -27,8 +34,9 @@ export class BookService {
     ]
     
     
-    getBooks(searchString:string): Observable<Array<Book>> {
-        return Observable.of(this.listBooks);;
+    getBooks(searchString:string) :Observable<Array<Book>>{
+        return this._httpService.callSearch("book/getBooks");
+        //return Observable.of(this.listBooks);
     }
     
     getBook(id:string): Observable<Book> {
