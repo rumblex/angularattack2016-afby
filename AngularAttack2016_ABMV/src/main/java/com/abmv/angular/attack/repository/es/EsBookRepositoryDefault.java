@@ -4,6 +4,6 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchCrudReposi
 
 import com.abmv.angular.attack.entities.es.BookES;
 
-public interface BookEsRepositoryDefault extends ElasticsearchCrudRepository<BookES, Long> {
+public interface EsBookRepositoryDefault extends ElasticsearchCrudRepository<BookES, Long> {
 
 }

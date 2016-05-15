@@ -1,28 +1,32 @@
 package com.abmv.angular.attack.rest.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.abmv.angular.attack.entities.sql.User;
 import com.abmv.angular.attack.service.UserService;
 
 @RestController
+@RequestMapping("/user")
 public class UserRestService {
 	
 	@Autowired
 	UserService usrSer;
 	
-	@RequestMapping("/register")
-	public User register(){
-		User u=new User();
-		u.setContactNo("+91 22");
-		u.setEmailId("bb@ttt.com");
-		return usrSer.registerUser(u);
+	@RequestMapping(value= "/register", method = RequestMethod.POST,
+			consumes="application/json")
+	public ResponseEntity register(@RequestBody User u){
+		usrSer.registerUser(u);
+		return new ResponseEntity(u, HttpStatus.OK);
 	}
 	
-	@RequestMapping("/getAllUsers")
-	public Iterable<User> getAllUser(){
+	@RequestMapping("/getAll")
+	public Iterable<User> getAllUsers(){
 		return usrSer.getAllUsers();
 	}
 	
