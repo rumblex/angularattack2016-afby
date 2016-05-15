@@ -7,19 +7,22 @@ import {RequestParameters} from './request.params';
 export class HttpServies {
     constructor(private http: Http) { }
 
-    private _url:string='http://localhost:8080/';
+    private _url:string='http://localhost:8081/';
 
 
     public callSearch(path:string,passedParams:Array<RequestParameters>){
         let params = new URLSearchParams();
+        if(passedParams!=null){
         passedParams.forEach(e =>{
             params.set(e.key,e.value);
-        }) ;
+        }) ;}
         return this.http.get(this._url+path,{search:params}).map(this.extractData).catch(this.handleError);
     }
     
     public callSave(path:string,body:string){
-        return this.http.post(this._url+path,body)
+        let header:Headers=new Headers();
+        header.set('Content-Type','application/json');
+        return this.http.post(this._url+path,body,{headers:header}).map(this.extractData).catch(this.handleError);
     }    
 
     private extractData(res: Response) {

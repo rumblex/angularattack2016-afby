@@ -38,4 +38,8 @@ public class LibraryUtil {
 		});
 		return li;
 	}
+	
+	public static Long getLoggedInUserId(){
+		return 1L;
+	}
 }

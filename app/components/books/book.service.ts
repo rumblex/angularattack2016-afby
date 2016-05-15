@@ -57,13 +57,15 @@ export class BookService {
     }
 
     getAllUserBooks(): Observable<Array<Book>> {
-        return Observable.of(this.listBooks);
+        return this._httpService.callSearch("book/getUserLibrary",null);
+        //return Observable.of(this.listBooks);
     }
 
     saveBook(book: Book): Observable<Book> {
         book.id = this.listBooks.length + 1;
         this.listBooks.push(book);
-        return Observable.of(book);
+        return this._httpService.callSave("book/add",JSON.stringify(book));
+        //return Observable.of(book);
     }
 
 
