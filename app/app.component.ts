@@ -11,10 +11,10 @@ import {LoginService} from './components/users/login.service';
     directives: [ROUTER_DIRECTIVES],
     providers: [BookService,LoginService],
     template: `
-    <div (click)="onclick()" class="well well-sm container-fluid">
+    <div (click)="onclick()" class="well well-sm">
         <div class="page-header">
-                <h2 class="text-center">Sher'e Book</h2>
-                <img src="../images/ShereBook.jpg" class="center-block">
+            <h2 class="text-center"><b>Sher'e Book</b></h2>
+            <img style=" width: 100%;height: auto;" src="../images/ShereBook.jpg" class="center-block">
         </div>
     </div>
     <router-outlet></router-outlet>

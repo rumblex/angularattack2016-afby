@@ -7,7 +7,7 @@ import {RequestParameters} from './request.params';
 export class HttpServies {
     constructor(private http: Http) { }
 
-    private _url:string='http://localhost:8081/';
+    private _url:string='http://192.168.1.122:8081/';
 
 
     public callSearch(path:string,passedParams:Array<RequestParameters>){

@@ -14,7 +14,7 @@ var core_1 = require('@angular/core');
 var HttpServies = (function () {
     function HttpServies(http) {
         this.http = http;
-        this._url = 'http://localhost:8081/';
+        this._url = 'http://192.168.1.122:8081/';
     }
     HttpServies.prototype.callSearch = function (path, passedParams) {
         var params = new http_1.URLSearchParams();

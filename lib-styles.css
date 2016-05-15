@@ -1,0 +1,10 @@
+    body {
+        background-image: url('images/background.jpg');
+    }
+
+    .panel-transparent {
+        background: none;
+    }
+    .thumbnail{
+        background: none;
+    }    
