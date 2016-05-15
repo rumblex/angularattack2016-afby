@@ -1,22 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouteParams} from '@angular/router-deprecated';
-import {Book} from '../book';
-import {BookService} from '../book.service';
-import {BookListComponent} from './book-list/book-list.component';
+import {Book} from '../../book';
+import {BookService} from '../../book.service';
+import {BookListComponent} from './../book-list/book-list.component';
 
 @Component({
-    selector: 'book-search',
-    templateUrl: 'app/components/books/book-search/book-search.template.html',
+    selector: 'book-user-list',
+    templateUrl: 'app/components/books/book-search/book-user-list/book-user-list.template.html',
     directives: [BookListComponent]
 })
-export class BookSearchComponent implements OnInit {
+export class BookUserComponent implements OnInit {
 
     private textSearch: string;
     private listResults: Array<Book>;
 
     constructor(private _bookService: BookService, public router: Router, public routeParams: RouteParams) { }
 
-    ngOnInit() {
+    ngOnInit() { 
         this.doSearch();
     }
 

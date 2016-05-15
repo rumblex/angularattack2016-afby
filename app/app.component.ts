@@ -21,7 +21,7 @@ import {HomeComponent} from './components/home/home.component';
 export class AppComponent { 
     
     constructor(private router: Router){}
-    
+  
     onclick(){
         this.router.navigate(['Home'] )
     }

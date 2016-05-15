@@ -1,22 +1,21 @@
 import {Component,OnInit,Input} from '@angular/core';
-import {GridListComponent} from './grid-list/grid-list.component';
-import {Item} from './grid-item/item';
+import {Router} from '@angular/router-deprecated';
 
 @Component({
     selector: 'home',
-    directives:[GridListComponent],
-    template: `<grid-list [itemList]="itemList"></grid-list>`
+    templateUrl: `app/components/home/home.template.html`
 })
 export class HomeComponent implements OnInit { 
        
-    private itemList:Array<Item>;
-       
-    constructor(){}
+    constructor(private _router:Router){}
     
-    ngOnInit(){
-        this.itemList = [
-            new Item("Search", "Search for books", "image", "BookCenter"),
-            new Item("Your Books", "View your books", "image", "BookCenter")          
-        ]
+    ngOnInit(){}
+    
+    onclickUserView(){
+        this._router.navigate(['BookCenter','BookUserComponent']);
     }
+    
+    onclick(){
+        this._router.navigate(['BookCenter']);
+    }              
 }

@@ -9,24 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var grid_list_component_1 = require('./grid-list/grid-list.component');
-var item_1 = require('./grid-item/item');
+var router_deprecated_1 = require('@angular/router-deprecated');
 var HomeComponent = (function () {
-    function HomeComponent() {
+    function HomeComponent(_router) {
+        this._router = _router;
     }
-    HomeComponent.prototype.ngOnInit = function () {
-        this.itemList = [
-            new item_1.Item("Search", "Search for books", "image", "BookCenter"),
-            new item_1.Item("Your Books", "View your books", "image", "BookCenter")
-        ];
+    HomeComponent.prototype.ngOnInit = function () { };
+    HomeComponent.prototype.onclickUserView = function () {
+        this._router.navigate(['BookCenter', 'BookUserComponent']);
+    };
+    HomeComponent.prototype.onclick = function () {
+        this._router.navigate(['BookCenter']);
     };
     HomeComponent = __decorate([
         core_1.Component({
             selector: 'home',
-            directives: [grid_list_component_1.GridListComponent],
-            template: "<grid-list [itemList]=\"itemList\"></grid-list>"
+            templateUrl: "app/components/home/home.template.html"
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], HomeComponent);
     return HomeComponent;
 }());
