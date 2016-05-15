@@ -4,11 +4,12 @@ import {BookCenterComponent} from './components/books/book-center.component';
 import {HomeComponent} from './components/home/home.component';
 import { BookService } from './components/books/book.service';
 import {AboutUsComponent} from './components/home/about-us/about-us.component';
+import {LoginService} from './components/users/login.service';
 
 @Component({
     selector: 'my-app',
     directives: [ROUTER_DIRECTIVES],
-    providers: [BookService],
+    providers: [BookService,LoginService],
     template: `
     <div (click)="onclick()" class="well well-sm container-fluid">
         <div class="page-header">

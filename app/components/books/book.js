@@ -1,7 +1,7 @@
 "use strict";
 var Book = (function () {
     function Book(obj) {
-        this.id = obj && obj.id || null;
+        this.bookId = obj && obj.id || null;
         this.title = obj && obj.title || null;
         this.authorName = obj && obj.authorName || null;
         this.sharable = obj && obj.sharable || null;

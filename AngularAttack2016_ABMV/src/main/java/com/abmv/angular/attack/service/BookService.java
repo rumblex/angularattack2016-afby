@@ -16,11 +16,11 @@ public interface BookService {
 
 	Collection<Book> getLibrary(AppUser id);
 	
-	List<BookES> searchFuzzy(String text) throws Exception;
+	List<Book> searchFuzzy(String text) throws Exception;
 	
 	List<AppUser> findAllUserHavingBook(Long id);
 
-	List<BookES> fuzzyFilter(String text, Long id) throws InterruptedException, ExecutionException;
+	List<Book> fuzzyFilter(String text, Long id) throws InterruptedException, ExecutionException;
 
 	void removeBook(Book b);
 

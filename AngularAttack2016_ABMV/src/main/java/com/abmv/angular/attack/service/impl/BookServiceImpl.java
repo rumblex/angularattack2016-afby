@@ -44,8 +44,13 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public List<BookES> searchFuzzy(String text) throws Exception {
-		return libEs.fuzzyFilter(text);
+	public List<Book> searchFuzzy(String text) throws Exception {
+		List<BookES> fuzzyFilter = libEs.fuzzyFilter(text);
+		List<Book> lib=new ArrayList<>();
+		
+		fuzzyFilter.forEach(e->lib.add(covertToBook(e)));
+		
+		return lib;
 	}
 
 	@Override
@@ -59,8 +64,14 @@ public class BookServiceImpl implements BookService{
 	}
 	
 	@Override
-	public List<BookES> fuzzyFilter(String text,Long id) throws InterruptedException, ExecutionException{
-		return libEs.fuzzyFilter(text,	 id);
+	public List<Book> fuzzyFilter(String text,Long id) throws InterruptedException, ExecutionException{
+		
+		List<BookES> fuzzyFilter = libEs.fuzzyFilter(text,	 id);;
+		List<Book> lib=new ArrayList<>();
+		
+		fuzzyFilter.forEach(e->lib.add(covertToBook(e)));
+		
+		return lib;
 	}
 
 	@Override
@@ -77,6 +88,11 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public Collection<Book> getLatestBooks() {
 		return bookRep.findAllByOrderByBookIdDesc();
+	}
+	
+	
+	private Book covertToBook(BookES be){
+		return bookRep.findOne(be.getId());
 	}
 	
 	

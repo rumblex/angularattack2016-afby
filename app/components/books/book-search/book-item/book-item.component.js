@@ -20,7 +20,7 @@ var BookItemComponent = (function () {
     BookItemComponent.prototype.ngOnInit = function () {
     };
     BookItemComponent.prototype.onclick = function () {
-        this.router.navigate(['BookDetailComponent', { id: this.book.id }]);
+        this.router.navigate(['BookDetailComponent', { id: this.book.bookId }]);
     };
     BookItemComponent.prototype.onEdit = function () {
         this.bookEdited.emit(this.book);
@@ -43,7 +43,7 @@ var BookItemComponent = (function () {
     BookItemComponent = __decorate([
         core_1.Component({
             selector: 'book-item',
-            template: "\n    <div class=\"col-sm-6 col-md-6\">\n      <div class=\"panel panel-default\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\">Book Details</h3>\n        </div>\n        <div class=\"panel-body\">\n          <h3>Title: {{book.title}}</h3>\n          <p>Author: {{book.authorName}}</p>\n          <p>ID: {{book.id}}</p>\n        </div>            \n        <div class=\"panel-footer\">\n            <button type=\"button\" class=\"btn btn-default\" (click)=\"onclick()\">View</button>    \n            <button type=\"button\" class=\"btn btn-default\" (click)=\"onEdit()\">Edit</button>    \n            <button type=\"button\" class=\"btn btn-default\" (click)=\"onDelete()\">Delete</button>    \n        </div>\n      </div>\n    <div>\n    "
+            template: "\n    <div class=\"col-sm-6 col-md-6\">\n      <div class=\"panel panel-default\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\">Book Details</h3>\n        </div>\n        <div class=\"panel-body\">\n          <h3>Title: {{book.title}}</h3>\n          <p>Author: {{book.authorName}}</p>\n          <p>ID: {{book.bookId}}</p>\n        </div>            \n        <div class=\"panel-footer\">\n            <button type=\"button\" class=\"btn btn-default\" (click)=\"onclick()\">View</button>    \n            <button type=\"button\" class=\"btn btn-default\" (click)=\"onEdit()\">Edit</button>    \n            <button type=\"button\" class=\"btn btn-default\" (click)=\"onDelete()\">Delete</button>    \n        </div>\n      </div>\n    <div>\n    "
         }), 
         __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], BookItemComponent);

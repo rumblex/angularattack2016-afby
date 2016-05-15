@@ -14,17 +14,26 @@ var core_1 = require('@angular/core');
 var HttpServies = (function () {
     function HttpServies(http) {
         this.http = http;
-        this._url = 'http://localhost:8080/';
+        this._url = 'http://localhost:8081/';
     }
     HttpServies.prototype.callSearch = function (path, passedParams) {
         var params = new http_1.URLSearchParams();
-        passedParams.forEach(function (e) {
-            params.set(e.key, e.value);
-        });
+        if (passedParams != null) {
+            passedParams.forEach(function (e) {
+                params.set(e.key, e.value);
+            });
+        }
         return this.http.get(this._url + path, { search: params }).map(this.extractData).catch(this.handleError);
     };
     HttpServies.prototype.callSave = function (path, body) {
-        return this.http.post(this._url + path, body);
+        var header = new http_1.Headers();
+        header.set('Content-Type', 'application/json');
+        return this.http.post(this._url + path, body, { headers: header }).map(this.extractData).catch(this.handleError);
+    };
+    HttpServies.prototype.callDelete = function (path, body) {
+        var header = new http_1.Headers();
+        header.set('Content-Type', 'application/json');
+        return this.http.post(this._url + path, body, { headers: header }).map(this.extractData).catch(this.handleError);
     };
     HttpServies.prototype.extractData = function (res) {
         if (res.status < 200 || res.status >= 300) {
