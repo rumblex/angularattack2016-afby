@@ -23,9 +23,6 @@ public class User {
 	
 	private String emailId;
 	
-	@OneToMany
-	private Set<Book> library;
-	
 	public User() {
 	}
 	

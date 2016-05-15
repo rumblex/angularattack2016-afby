@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
-import com.abmv.angular.attack.entities.User;
+import com.abmv.angular.attack.entities.sql.User;
 import com.abmv.angular.attack.social.security.SocialAuthenticator;
 
 
