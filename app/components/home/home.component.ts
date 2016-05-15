@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
     private confirmPassword: string;
     private contact:string;
     private active: boolean = true;
+    public msg:string;
 
     constructor(private _router: Router, private _loginService: LoginService) { }
 
@@ -43,6 +44,7 @@ export class HomeComponent implements OnInit {
         this.password = "";
         this.confirmPassword = "";
         this.contact = "";
+        this.msg = "";
         this.active = false;
         setTimeout(() => this.active = true, 0);
     }
@@ -53,7 +55,10 @@ export class HomeComponent implements OnInit {
             .subscribe(data => {
                 this.user = data;
                 this._loginService.user=data;
-                $("#cLoginForm").modal('hide');}
+                $("#cLoginForm").modal('hide');}, 
+                error=> {
+                    this.msg="Invalid Username/Password.";
+                }
             );
     }
 

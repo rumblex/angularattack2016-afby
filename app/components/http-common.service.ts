@@ -20,9 +20,10 @@ export class HttpServies {
     }
     
     public callSave(path:string,body:string){
-        let header:Headers=new Headers();
+       /* let header:Headers=new Headers();
         header.set('Content-Type','application/json');
-        return this.http.post(this._url+path,body,{headers:header}).map(this.extractData).catch(this.handleError);
+        return this.http.post(this._url+path,body,{headers:header}).map(this.extractData).catch(this.handleError);*/
+        return this.http.post(this._url+path,body).map(this.extractData).catch(this.handleError);
     }   
     
     public callDelete(path:string,body:string){

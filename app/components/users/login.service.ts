@@ -14,7 +14,7 @@ export class LoginService {
 
 
     login(user: LibUser): Observable<LibUser> {
-        this.user = user;
+        
         return this._httpService.callSave("user/authenticate",JSON.stringify(user));  
     }
 
@@ -24,7 +24,7 @@ export class LoginService {
     }
 
     signUp(user: LibUser){
-        this.user = user;
+        
         return this._httpService.callSave("user/register",JSON.stringify(user));
     }
 }
