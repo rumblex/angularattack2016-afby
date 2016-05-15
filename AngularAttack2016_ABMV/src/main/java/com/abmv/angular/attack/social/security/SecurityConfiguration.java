@@ -1,34 +1,23 @@
 package com.abmv.angular.attack.social.security;
 
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.web.savedrequest.NullRequestCache;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.security.crypto.encrypt.Encryptors;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-	@Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/css/**","/images/**").permitAll()
-                .antMatchers("/api/session").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/napi/**").permitAll()
-                .antMatchers("/api/**").authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
-                .and()
-                .headers().frameOptions().disable() // for h2
-                .and()
-                .requestCache()
-                .requestCache(new NullRequestCache())
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-                .and().csrf().disable();
-    }
+@Configuration
+@ImportResource("classpath:security.xml")
+public class SecurityConfiguration {
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+    	return NoOpPasswordEncoder.getInstance();
+	}
+    
+	@Bean
+	public TextEncryptor textEncryptor() {
+		return Encryptors.noOpText();
+	}
 }

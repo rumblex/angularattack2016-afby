@@ -1,4 +1,4 @@
-package com.abmv.angular.attack.utils;
+package com.abmv.angular.attack.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
