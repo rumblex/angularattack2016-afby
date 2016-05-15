@@ -73,7 +73,7 @@
 					</form>
 					<form id="facebookPost" method="post" action="/postfacebook">
 						<p>Post to Facebook as <a href="${connectionMap[providerId][0].profileUrl}">${connectionMap[providerId][0].displayName}</a>.</p>
-						<textarea id="postText" name="postText" disabled="disabled" row="2" col="100">Currently reading "${bookName}" via Sher'e Book App</textarea>
+						<textarea id="postText" name="postText" disabled="disabled" rows="1" cols="50">Currently reading "${bookName}" via Sher'e Book App</textarea>
 						<input id="post" name="post" type="hidden" value="Currently reading '${bookName}' via Sher'e Book App"/>
 						<button class="disconnectButton" type="submit">Post</button>	
 					</form>
