@@ -39,7 +39,13 @@ public class HomeController {
 		MultiValueMap<String, Connection<?>> connections = getConnectionRepository().findAllConnections();
 		if(tweet!=null){
 			Connection<?> twitterC = connections.getFirst("twitter");
-			twitterC.updateStatus(tweet);
+			try {
+				twitterC.updateStatus(tweet);
+				model.addAttribute("postMessage", "Your tweet is posted.");
+			} catch (Exception e) {
+				model.addAttribute("postMessage", "Your message cannot be posted to Tweet due to some failure");
+				log.error("Message can't be posted to Facebook", e.getMessage());
+			}
 		}
 		model.addAttribute("connectionsToProviders", connections);
 		return "home";
@@ -49,9 +55,9 @@ public class HomeController {
 	public String facebook(Model model, @RequestParam String post) {
 		MultiValueMap<String, Connection<?>> connections = getConnectionRepository().findAllConnections();
 		if(post!=null){
-			Connection<?> twitterFb = connections.getFirst("facebook");
+			Connection<?> fbConn = connections.getFirst("facebook");
 			try {
-				twitterFb.updateStatus(post);
+				fbConn.updateStatus(post);
 				model.addAttribute("postMessage", "Your message is posted to Facebook");
 			} catch (Exception e) {
 				model.addAttribute("postMessage", "Your message cannot be posted to Facebook due to some failure");

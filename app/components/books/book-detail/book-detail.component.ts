@@ -13,6 +13,7 @@ export class BookDetailComponent implements OnInit {
     private book:Book=new Book();
     private id:string;
     private listUser:Array<LibUser>;
+    private socialUrl:string;
     
     constructor(private _bookService: BookService,public routeParams: RouteParams){}
     
@@ -20,7 +21,7 @@ export class BookDetailComponent implements OnInit {
          this.id = this.routeParams.get('id');
          this._bookService.getBook(this.id)
             .subscribe(data => {this.book = data;
-            console.log(this.book.title);    
+            this.socialUrl='https://angularattack2016abmv.herokuapp.com/gotoconnect?bookName='+this.book.title+'';
             });
          this._bookService.getUsersForBook(this.id)
             .subscribe(data => {this.listUser = data});       
