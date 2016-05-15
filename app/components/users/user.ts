@@ -1,3 +1,3 @@
 export class LibUser {
-    constructor(public name: string, public location: string, public contact: string) { }
+    constructor(public name?: string, public password?: string, public contact?: string) { }
 }

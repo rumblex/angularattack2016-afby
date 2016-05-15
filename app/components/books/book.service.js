@@ -55,12 +55,14 @@ var BookService = (function () {
         return Observable_1.Observable.of(this.listBooks);
     };
     BookService.prototype.getAllUserBooks = function () {
-        return Observable_1.Observable.of(this.listBooks);
+        return this._httpService.callSearch("book/getUserLibrary", null);
+        //return Observable.of(this.listBooks);
     };
     BookService.prototype.saveBook = function (book) {
         book.id = this.listBooks.length + 1;
         this.listBooks.push(book);
-        return Observable_1.Observable.of(book);
+        return this._httpService.callSave("book/add", JSON.stringify(book));
+        //return Observable.of(book);
     };
     BookService.prototype.updateBook = function (book) {
         book.id = this.listBooks.length + 1;

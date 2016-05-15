@@ -1,8 +1,8 @@
 "use strict";
 var LibUser = (function () {
-    function LibUser(name, location, contact) {
+    function LibUser(name, password, contact) {
         this.name = name;
-        this.location = location;
+        this.password = password;
         this.contact = contact;
     }
     return LibUser;

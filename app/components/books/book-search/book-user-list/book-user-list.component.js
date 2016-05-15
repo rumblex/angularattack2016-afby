@@ -59,7 +59,11 @@ var BookUserComponent = (function () {
     };
     BookUserComponent.prototype.onSaveBook = function () {
         var _this = this;
+        this.book.genres = this.genreString.split(',');
+        this.book.sharable = true;
+        console.log(this.book.id);
         if (this.book.id == null) {
+            console.log("inside");
             this._bookService.saveBook(this.book)
                 .subscribe(function (data) {
                 _this.onAddNew();
