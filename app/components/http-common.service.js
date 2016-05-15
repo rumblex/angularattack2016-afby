@@ -27,7 +27,6 @@ var HttpServies = (function () {
             throw new Error('Response status: ' + res.status);
         }
         var body = res.json()['content'];
-        console.log("data :::  " + JSON.stringify(body));
         return body;
     };
     HttpServies.prototype.handleError = function (error) {

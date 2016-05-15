@@ -25,7 +25,7 @@ export class BookUserComponent implements OnInit {
     }
 
     onSubmit() {
-        this.router.navigate(['BookSearchComponent', { query: this.textSearch }]);
+        this.router.navigate(['BookCenter', 'BookUserComponent', { query: this.textSearch }]);
         this.doSearch();
     }
 
@@ -47,7 +47,7 @@ export class BookUserComponent implements OnInit {
     onClear() {
         this.listResults = null;
         this.textSearch = "";
-        this.router.navigate(['BookSearchComponent', { query: this.textSearch }]);
+        this.router.navigate(['BookCenter', 'BookUserComponent', { query: this.textSearch }]);
     }
 
     onAddNew() {
@@ -58,11 +58,31 @@ export class BookUserComponent implements OnInit {
     }
 
     onSaveBook() {
+        if(this.book.id == null){
         this._bookService.saveBook(this.book)
             .subscribe(data => {
                 this.onAddNew();
                 this.showSucccess = true;
             });
+        } else {
+            this._bookService.updateBook(this.book)
+            .subscribe(data => {
+                this.onAddNew();
+                this.showSucccess = true;
+            });
+        }
     }
 
+    onEditBook(book: Book) {
+        this.book = book;
+        $("#addBook").modal();
+    }
+
+    onDeleteBook(book: Book) {
+        this._bookService.saveBook(book)
+            .subscribe(data => {
+                this.onAddNew();
+                this.showSucccess = true;
+            });
+    }
 }

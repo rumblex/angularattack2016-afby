@@ -62,5 +62,17 @@ export class BookService {
         this.listBooks.push(book);
         return Observable.of(book);
     }
+    
+    
+    updateBook(book: Book): Observable<Book> {
+        book.id = this.listBooks.length+1;
+        this.listBooks.push(book);
+        return Observable.of(book);
+    }
+    
+    deleteBook(book:Book):Observable<Book>{
+        this.listBooks.pop();
+        return Observable.of(book);
+    }
 
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit,Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {BookItemComponent} from '../book-item/book-item.component';
 import {Book} from '../../book';
 
@@ -8,7 +8,7 @@ import {Book} from '../../book';
     template: `
     <div class="row">     
         <div *ngFor="let item of itemList">
-            <book-item [book] = item></book-item>
+            <book-item (bookEdited)="onEdit($event)" (bookDeleted)="onDelete($event)"  [book] = item></book-item>
         </div>
     </div>
     `
@@ -16,11 +16,23 @@ import {Book} from '../../book';
 export class BookListComponent implements OnInit {
 
     @Input() private itemList: Array<Book>;
-
-    constructor() { }
-
-    ngOnInit() {
-        
+    @Output() private editBook: EventEmitter<Book>;
+    @Output() private deleteBook: EventEmitter<Book>;
+    
+    constructor() {
+        this.editBook = new EventEmitter<Book>();
+        this.deleteBook = new EventEmitter<Book>();
     }
 
+    ngOnInit() {
+
+    }
+
+    onEdit(book: Book) {
+        this.editBook.emit(book);
+    }
+
+    onDelete(book: Book) {
+        this.deleteBook.emit(book);
+    }
 }

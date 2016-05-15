@@ -26,7 +26,7 @@ var BookUserComponent = (function () {
         this.doSearch();
     };
     BookUserComponent.prototype.onSubmit = function () {
-        this.router.navigate(['BookSearchComponent', { query: this.textSearch }]);
+        this.router.navigate(['BookCenter', 'BookUserComponent', { query: this.textSearch }]);
         this.doSearch();
     };
     BookUserComponent.prototype.doSearch = function () {
@@ -48,7 +48,7 @@ var BookUserComponent = (function () {
     BookUserComponent.prototype.onClear = function () {
         this.listResults = null;
         this.textSearch = "";
-        this.router.navigate(['BookSearchComponent', { query: this.textSearch }]);
+        this.router.navigate(['BookCenter', 'BookUserComponent', { query: this.textSearch }]);
     };
     BookUserComponent.prototype.onAddNew = function () {
         var _this = this;
@@ -59,7 +59,28 @@ var BookUserComponent = (function () {
     };
     BookUserComponent.prototype.onSaveBook = function () {
         var _this = this;
-        this._bookService.saveBook(this.book)
+        if (this.book.id == null) {
+            this._bookService.saveBook(this.book)
+                .subscribe(function (data) {
+                _this.onAddNew();
+                _this.showSucccess = true;
+            });
+        }
+        else {
+            this._bookService.updateBook(this.book)
+                .subscribe(function (data) {
+                _this.onAddNew();
+                _this.showSucccess = true;
+            });
+        }
+    };
+    BookUserComponent.prototype.onEditBook = function (book) {
+        this.book = book;
+        $("#addBook").modal();
+    };
+    BookUserComponent.prototype.onDeleteBook = function (book) {
+        var _this = this;
+        this._bookService.saveBook(book)
             .subscribe(function (data) {
             _this.onAddNew();
             _this.showSucccess = true;

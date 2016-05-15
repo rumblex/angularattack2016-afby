@@ -6,13 +6,13 @@
       <input type="text" class="form-control" required [(ngModel)]="textSearch" ngControl="searchText" #searchText="ngForm">
     </div>
     <button type="submit" class="btn btn-default" [disabled]="!searchForm.form.valid">Submit</button>
-    <button type="button" class="btn btn-default" (click)="onClear()">Clear</button>    
+    <button type="button" class="btn btn-default" (click)="onClear()">Clear</button>
   </form>
   <button type="button" class="btn btn-default" (click)="onAddNew()" data-toggle="modal" data-target="#addBook">Add</button>
 </fieldset>
 <fieldset>
   <legend>Results</legend>
-  <book-list [itemList]="listResults"></book-list>
+  <book-list (editBook)="onEditBook($event)" (deleteBook)="onDeleteBook($event)" [itemList]="listResults"></book-list>
 </fieldset>
 
 <!-- Modal -->
@@ -34,11 +34,11 @@
             <div [hidden]="fTitle.valid || fTitle.pristine" class="alert alert-danger">
               Title is required
             </div>
-          </div>          
+          </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-default" [disabled]="!bookForm.form.valid"  >Save</button>
+            <button type="submit" class="btn btn-default" [disabled]="!bookForm.form.valid">Save</button>
           </div>
         </form>
       </div>
