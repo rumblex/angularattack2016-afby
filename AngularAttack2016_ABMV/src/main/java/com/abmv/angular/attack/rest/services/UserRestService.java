@@ -27,7 +27,7 @@ public class UserRestService {
 		return usrSer.getAllUsers();
 	}
 	
-	@RequestMapping(value="/authenticate",method=RequestMethod.POST)
+	@RequestMapping(value="/authenticate",method=RequestMethod.POST,consumes="application/json")
 	public AppUser authenticate(@RequestBody AppUser au){
 		AppUser u=usrSer.getUserByUsername(au.getName());
 		if(u.getPassword().equals(au.getPassword())){
