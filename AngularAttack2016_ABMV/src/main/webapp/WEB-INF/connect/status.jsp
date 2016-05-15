@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ page session="false" %>
 <html>
 	<head>
@@ -41,7 +40,10 @@
 		}
 		</script>
 				
-		<h3>Your Connections</h3>
+		<h3>Your Social Connections</h3>
+		
+		<c:set var="bookName" value="${applicationScope['bookName']}"/>
+		
 
 		<c:forEach var="providerId" items="${providerIds}">
 			<c:set var="connections" value="${connectionMap[providerId]}" />
@@ -71,7 +73,8 @@
 					</form>
 					<form id="facebookPost" method="post" action="/postfacebook">
 						<p>Post to Facebook as <a href="${connectionMap[providerId][0].profileUrl}">${connectionMap[providerId][0].displayName}</a>.</p>
-						<textarea id="post" name="post" rows="5" cols="60"></textarea>
+						<textarea id="postText" name="postText" disabled="disabled" row="2" col="100">Currently reading "${bookName}" via Sher'e Book App</textarea>
+						<input id="post" name="post" type="hidden" value="Currently reading '${bookName}' via Sher'e Book App"/>
 						<button class="disconnectButton" type="submit">Post</button>	
 					</form>
 					</c:if>
@@ -96,13 +99,14 @@
 					<c:if test="${not empty connections}">
 						<form id="twitterDisconnect" method="post" action="${connectUrl}">
 							<p>You are connected to Twitter 
-						   	as <a href="${connectionMap[providerId][0].profileUrl}">${connectionMap[providerId][0].displayName}</a>.</p>
-							<button class="disconnectButton" type="submit">Disconnect</button>	
+						   	as <a href="${connectionMap[providerId][0].profileUrl}">${connectionMap[providerId][0].displayName}</a>
+							<button class="disconnectButton" type="submit">Disconnect</button>	.</p>
 							<input type="hidden" name="_method" value="delete" />
 						</form>
 						<form id="twitterTweet" method="post" action="/posttwitter">
-							<p>Post to Facebook as <a href="${connectionMap[providerId][0].profileUrl}">${connectionMap[providerId][0].displayName}</a>.</p>
-							<textarea id="tweet" name="tweet" rows="2" cols="60"></textarea>
+							<p>Post to Twitter as <a href="${connectionMap[providerId][0].profileUrl}">${connectionMap[providerId][0].displayName}</a>.</p>
+							<textarea id="tweetText" name="tweetText" disabled="disabled" rows="1" cols="50">Currently reading "${bookName}" via Sher'e Book App</textarea>
+							<input id="tweet" name="tweet" type="hidden" value="Currently reading '${bookName}' via Sher'e Book App"/>
 							<button class="disconnectButton" type="submit">Tweet</button>	
 						</form>
 					</c:if>
@@ -119,6 +123,7 @@
 				cTP[0].setAttribute("target", "connectWindow");
 				cTP[0].submit();
 			});
+			
 		});
 		</script>
 	</body>
