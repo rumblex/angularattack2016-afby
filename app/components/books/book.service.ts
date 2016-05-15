@@ -57,4 +57,10 @@ export class BookService {
         return Observable.of(this.listBooks);
     }
 
+    saveBook(book: Book): Observable<Book> {
+        book.id = this.listBooks.length+1;
+        this.listBooks.push(book);
+        return Observable.of(book);
+    }
+
 }

@@ -13,10 +13,14 @@ export class BookUserComponent implements OnInit {
 
     private textSearch: string;
     private listResults: Array<Book>;
+    private book: Book;
+    active = true;
+    showSucccess = false;
 
     constructor(private _bookService: BookService, public router: Router, public routeParams: RouteParams) { }
 
-    ngOnInit() { 
+    ngOnInit() {
+        this.book = new Book();
         this.doSearch();
     }
 
@@ -33,7 +37,7 @@ export class BookUserComponent implements OnInit {
                     this.listResults = data;
                 });
         } else {
-             this._bookService.getAllUserBooks()
+            this._bookService.getAllUserBooks()
                 .subscribe(data => {
                     this.listResults = data;
                 });
@@ -44,6 +48,21 @@ export class BookUserComponent implements OnInit {
         this.listResults = null;
         this.textSearch = "";
         this.router.navigate(['BookSearchComponent', { query: this.textSearch }]);
+    }
+
+    onAddNew() {
+        this.book = new Book();
+        this.showSucccess = false;
+        this.active = false;
+        setTimeout(() => this.active = true, 0);
+    }
+
+    onSaveBook() {
+        this._bookService.saveBook(this.book)
+            .subscribe(data => {
+                this.onAddNew();
+                this.showSucccess = true;
+            });
     }
 
 }

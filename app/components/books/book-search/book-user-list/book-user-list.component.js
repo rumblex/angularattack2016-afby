@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
+var book_1 = require('../../book');
 var book_service_1 = require('../../book.service');
 var book_list_component_1 = require('./../book-list/book-list.component');
 var BookUserComponent = (function () {
@@ -17,8 +18,11 @@ var BookUserComponent = (function () {
         this._bookService = _bookService;
         this.router = router;
         this.routeParams = routeParams;
+        this.active = true;
+        this.showSucccess = false;
     }
     BookUserComponent.prototype.ngOnInit = function () {
+        this.book = new book_1.Book();
         this.doSearch();
     };
     BookUserComponent.prototype.onSubmit = function () {
@@ -45,6 +49,21 @@ var BookUserComponent = (function () {
         this.listResults = null;
         this.textSearch = "";
         this.router.navigate(['BookSearchComponent', { query: this.textSearch }]);
+    };
+    BookUserComponent.prototype.onAddNew = function () {
+        var _this = this;
+        this.book = new book_1.Book();
+        this.showSucccess = false;
+        this.active = false;
+        setTimeout(function () { return _this.active = true; }, 0);
+    };
+    BookUserComponent.prototype.onSaveBook = function () {
+        var _this = this;
+        this._bookService.saveBook(this.book)
+            .subscribe(function (data) {
+            _this.onAddNew();
+            _this.showSucccess = true;
+        });
     };
     BookUserComponent = __decorate([
         core_1.Component({

@@ -51,6 +51,11 @@ var BookService = (function () {
     BookService.prototype.getAllUserBooks = function () {
         return Observable_1.Observable.of(this.listBooks);
     };
+    BookService.prototype.saveBook = function (book) {
+        book.id = this.listBooks.length + 1;
+        this.listBooks.push(book);
+        return Observable_1.Observable.of(book);
+    };
     BookService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_common_service_1.HttpServies])
