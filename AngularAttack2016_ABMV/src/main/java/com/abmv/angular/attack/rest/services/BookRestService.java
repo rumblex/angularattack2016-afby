@@ -1,5 +1,6 @@
 package com.abmv.angular.attack.rest.services;
 
+import java.lang.invoke.MethodType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -73,5 +74,16 @@ public class BookRestService {
 	@RequestMapping("/getUsersHaving/{id}")
 	public List<AppUser> getAllUser(@PathVariable Long id){
 		return bookSer.findAllUserHavingBook(id);
+	}
+	
+	@RequestMapping(value="/delete",method=RequestMethod.POST)
+	public boolean deleteBook(@RequestBody Book b){
+		bookSer.removeBook(b);
+		return true;
+	}
+	
+	@RequestMapping("/getBook/{id}")
+	public Book getBookById(@PathVariable Long id){
+		return bookSer.getBookById(id);
 	}
 }

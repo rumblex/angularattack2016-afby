@@ -62,6 +62,17 @@ public class BookServiceImpl implements BookService{
 	public List<BookES> fuzzyFilter(String text,Long id) throws InterruptedException, ExecutionException{
 		return libEs.fuzzyFilter(text,	 id);
 	}
+
+	@Override
+	public void removeBook(Book b) {
+		bookRep.delete(b);
+		libEs.delete(LibraryUtil.ConvertToESBook(b));
+	}
+
+	@Override
+	public Book getBookById(Long id) {
+		return bookRep.findOne(id);
+	}
 	
 	
 }

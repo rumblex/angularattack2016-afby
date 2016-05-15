@@ -63,4 +63,8 @@ public class LibraryBookRepositoryES {
 	public Iterable<BookES> findAll() {
 		return bookEsRepo.findAll();
 	}
+
+	public void delete(BookES convertToESBook) {
+		bookEsRepo.delete(convertToESBook);
+	}
 }

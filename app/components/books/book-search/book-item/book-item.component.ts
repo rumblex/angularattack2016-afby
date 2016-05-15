@@ -13,7 +13,7 @@ import {Book} from '../../book';
         <div class="panel-body">
           <h3>Title: {{book.title}}</h3>
           <p>Author: {{book.authorName}}</p>
-          <p>ID: {{book.id}}</p>
+          <p>ID: {{book.bookId}}</p>
         </div>            
         <div class="panel-footer">
             <button type="button" class="btn btn-default" (click)="onclick()">View</button>    
@@ -39,7 +39,7 @@ export class BookItemComponent implements OnInit {
   }
 
   onclick() {
-    this.router.navigate(['BookDetailComponent', { id: this.book.id }]);
+    this.router.navigate(['BookDetailComponent', { id: this.book.bookId }]);
   }
 
   onEdit() {

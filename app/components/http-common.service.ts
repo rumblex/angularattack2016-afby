@@ -23,7 +23,13 @@ export class HttpServies {
         let header:Headers=new Headers();
         header.set('Content-Type','application/json');
         return this.http.post(this._url+path,body,{headers:header}).map(this.extractData).catch(this.handleError);
-    }    
+    }   
+    
+    public callDelete(path:string,body:string){
+        let header:Headers=new Headers();
+        header.set('Content-Type','application/json');
+        return this.http.post(this._url+path,body,{headers:header}).map(this.extractData).catch(this.handleError);
+    } 
 
     private extractData(res: Response) {
         if (res.status < 200 || res.status >= 300) {

@@ -1,11 +1,11 @@
 <fieldset>
   <legend>Book User List</legend>
-  <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
+  <form  #searchForm="ngForm">
     <div class="form-group">
       <label for="name">Search</label>
       <input type="text" class="form-control" required [(ngModel)]="textSearch" ngControl="searchText" #searchText="ngForm">
     </div>
-    <button type="submit" class="btn btn-default" [disabled]="!searchForm.form.valid">Submit</button>
+    <button type="button" class="btn btn-default" [disabled]="!searchForm.form.valid" (click)="onSubmit()">Submit</button>
     <button type="button" class="btn btn-default" (click)="onClear()">Clear</button>
   </form>
   <button type="button" class="btn btn-default" (click)="onAddNew()" data-toggle="modal" data-target="#addBook">Add</button>

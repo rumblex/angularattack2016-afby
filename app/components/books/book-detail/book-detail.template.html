@@ -1,5 +1,5 @@
 <fieldset>
-    <legend>Book Details: {{id}}</legend>
+    <legend>Book Details: {{book.bookId}}</legend>
     <div class="well well-lg">
         {{book.title}} | {{book.authorName}}
     </div>
@@ -11,14 +11,14 @@
         <tr>
             <th>No.</th>
             <th>Name</th>
-            <th>Location</th>
             <th>Contact Info</th>
+            <th>Email Id</th>
         </tr>
         <tr *ngFor="let user of listUser;let i = index">
-            <td>{{i+1}}</td>
+            <td>{{user.id}}</td>
             <td>{{user.name}}</td>
-            <td>{{user.location}}</td>
             <td>{{user.contact}}</td>
+            <td>{{user.emailId}}</td>
         </tr>
     </table>
 </fieldset>
