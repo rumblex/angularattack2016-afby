@@ -25,4 +25,6 @@ public interface BookService {
 	void removeBook(Book b);
 
 	Book getBookById(Long id);
+
+	Collection<Book> getLatestBooks();
 }

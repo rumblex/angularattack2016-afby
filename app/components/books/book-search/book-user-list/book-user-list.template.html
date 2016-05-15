@@ -1,6 +1,6 @@
 <fieldset>
   <legend>Book User List</legend>
-  <form  #searchForm="ngForm">
+  <form #searchForm="ngForm">
     <div class="form-group">
       <label for="name">Search</label>
       <input type="text" class="form-control" required [(ngModel)]="textSearch" ngControl="searchText" #searchText="ngForm">
@@ -31,14 +31,29 @@
           <div class="form-group">
             <label for="name">Title</label>
             <input type="text" class="form-control" required [(ngModel)]="book.title" ngControl="fTitle" #fTitle="ngForm">
-            <label for="name">Author Name</label>
-            <input type="text" class="form-control" required [(ngModel)]="book.authorName" ngControl="fTitle" #fTitle="ngForm">
-            <label for="name">Genre</label>
-            <input type="text" class="form-control" required [(ngModel)]="genreString" ngControl="fTitle" #fTitle="ngForm">
-            <label for="name">Rating</label>
-            <input type="text" class="form-control" required [(ngModel)]="book.rating" ngControl="fTitle" #fTitle="ngForm">
             <div [hidden]="fTitle.valid || fTitle.pristine" class="alert alert-danger">
               Title is required
+            </div>
+          </div>
+          <div>
+            <label for="name">Author Name</label>
+            <input type="text" class="form-control" required [(ngModel)]="book.authorName" ngControl="auName" #auName="ngForm">
+            <div [hidden]="auName.valid || auName.pristine" class="alert alert-danger">
+              Author Name is required
+            </div>
+          </div>
+          <div>
+            <label for="name">Genre</label>
+            <input type="text" class="form-control" required [(ngModel)]="genreString" ngControl="genre" #genre="ngForm">
+            <div [hidden]="genre.valid || genre.pristine" class="alert alert-danger">
+              Genre is required
+            </div>
+          </div>
+          <div>
+            <label for="name">Rating</label>
+            <input type="text" class="form-control" required [(ngModel)]="book.rating" ngControl="rating" #rating="ngForm">
+            <div [hidden]="rating.valid || rating.pristine" class="alert alert-danger">
+              Rating is required
             </div>
           </div>
 

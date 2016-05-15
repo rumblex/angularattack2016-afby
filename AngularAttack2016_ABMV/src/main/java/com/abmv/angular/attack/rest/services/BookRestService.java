@@ -4,6 +4,7 @@ import java.lang.invoke.MethodType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,5 +86,33 @@ public class BookRestService {
 	@RequestMapping("/getBook/{id}")
 	public Book getBookById(@PathVariable Long id){
 		return bookSer.getBookById(id);
+	}
+	
+	@RequestMapping("/getLatestBook")
+	public Collection<Book> getLatestBook(){
+		Collection<Book> ret=new ArrayList<>();
+		ArrayList<Book> latestBooks = new ArrayList<>(bookSer.getLatestBooks());
+		
+		for(int i=0;i<3 && i<latestBooks.size();i++){
+			ret.add(latestBooks.get(i));
+		}
+		
+		return ret;
+	}
+	
+	@RequestMapping("/getMostRead")
+	public Collection<Book> getMostRead(){
+		Collection<Book> ret=new ArrayList<>();
+		ArrayList<Book> latestBooks = new ArrayList<>(bookSer.getLatestBooks());
+		ArrayList<Integer> indexes=new ArrayList<>();
+		for(int j=0;j<3;j++){
+			indexes.add((int) ((Math.random()*10)%latestBooks.size()));
+		}
+		
+		for(int i=0;i<3 && i<latestBooks.size();i++){
+			ret.add(latestBooks.get(indexes.get(i)));
+		}
+		
+		return ret;
 	}
 }

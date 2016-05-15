@@ -73,6 +73,11 @@ public class BookServiceImpl implements BookService{
 	public Book getBookById(Long id) {
 		return bookRep.findOne(id);
 	}
+
+	@Override
+	public Collection<Book> getLatestBooks() {
+		return bookRep.findAllByOrderByBookIdDesc();
+	}
 	
 	
 }

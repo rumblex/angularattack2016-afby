@@ -72,11 +72,11 @@ export class BookService {
     }
 
     getTopNewBooks(): Observable<Array<Book>> {
-        return Observable.of(this.listBooks);
+        return this._httpService.callSearch("book/getLatestBook",null);
     }
 
     getRandomBooks(): Observable<Array<Book>> {
-        return Observable.of(this.listBooks);
+       return this._httpService.callSearch("book/getMostRead",null);
     }
 
 }
