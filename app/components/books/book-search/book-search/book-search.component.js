@@ -29,7 +29,7 @@ var BookSearchComponent = (function () {
         var _this = this;
         this.textSearch = this.routeParams.get('query');
         if (this.textSearch) {
-            this._bookService.getBooks(this.textSearch)
+            this._bookService.getMockBooks(this.textSearch)
                 .subscribe(function (data) {
                 _this.listResults = data;
             });
@@ -44,7 +44,8 @@ var BookSearchComponent = (function () {
         core_1.Component({
             selector: 'book-search',
             templateUrl: 'app/components/books/book-search/book-search/book-search.template.html',
-            directives: [book_list_component_1.BookListComponent]
+            directives: [book_list_component_1.BookListComponent],
+            providers: [book_service_1.BookService]
         }), 
         __metadata('design:paramtypes', [book_service_1.BookService, router_deprecated_1.Router, router_deprecated_1.RouteParams])
     ], BookSearchComponent);

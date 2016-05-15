@@ -5,15 +5,23 @@ import { HTTP_PROVIDERS, Http }    from '@angular/http';
 
 import {LibUser} from '../users/user';
 import { Book } from './book';
+import {HttpServies} from '../http-common.service';
+
+
 
 @Injectable()
 export class BookService {
+
+    constructor(private _httpService: HttpServies) {
+
+    }
+
 
     listBooks: Array<Book> = [
         new Book({ id: 1, title: 'abc', authorName: 'author 111' }),
         new Book({ id: 2, title: 'pqr', authorName: 'author 211' }),
         new Book({ id: 3, title: 'xyz', authorName: 'author 311' }),
-        new Book({ id: 4, title: 'lmn', authorName: 'author 411' }),
+        new Book({ id: 4, title: 'lmn', authorName: 'author 411' })
     ]
 
     listUser: Array<LibUser> = [
@@ -25,10 +33,12 @@ export class BookService {
         new LibUser("Yun Lee", "mumbai", "1111111111111"),
         new LibUser("Aaron", "mumbai", "1111111111111")
     ]
-
+    getMockBooks(searchString: string): Observable<Array<Book>> {
+        return Observable.of(this.listBooks);;
+    }
 
     getBooks(searchString: string): Observable<Array<Book>> {
-        return Observable.of(this.listBooks);;
+        return this._httpService.callSearch("book/getBooks");
     }
 
     getBook(id: string): Observable<Book> {
