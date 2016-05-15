@@ -60,22 +60,11 @@ var BookUserComponent = (function () {
         var _this = this;
         this.book.genres = this.genreString.split(',');
         this.book.sharable = true;
-        console.log(this.book.id);
-        if (this.book.id == null) {
-            console.log("inside");
-            this._bookService.saveBook(this.book)
-                .subscribe(function (data) {
-                _this.onAddNew();
-                _this.showSucccess = true;
-            });
-        }
-        else {
-            this._bookService.updateBook(this.book)
-                .subscribe(function (data) {
-                _this.onAddNew();
-                _this.showSucccess = true;
-            });
-        }
+        this._bookService.saveBook(this.book)
+            .subscribe(function (data) {
+            _this.onAddNew();
+            _this.showSucccess = true;
+        });
     };
     BookUserComponent.prototype.onEditBook = function (book) {
         this.book = book;

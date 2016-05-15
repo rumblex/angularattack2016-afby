@@ -14,7 +14,7 @@ export class BookUserComponent implements OnInit {
     private textSearch: string;
     private listResults: Array<Book>;
     private book: Book;
-    genreString:string;  
+    genreString: string;
     active = true;
     showSucccess = false;
 
@@ -58,23 +58,13 @@ export class BookUserComponent implements OnInit {
     }
 
     onSaveBook() {
-        this.book.genres=this.genreString.split(',');
-        this.book.sharable=true;
-        console.log(this.book.id);
-        if(this.book.id == null){
-            console.log("inside");
+        this.book.genres = this.genreString.split(',');
+        this.book.sharable = true;
         this._bookService.saveBook(this.book)
             .subscribe(data => {
                 this.onAddNew();
                 this.showSucccess = true;
             });
-        } else {
-            this._bookService.updateBook(this.book)
-            .subscribe(data => {
-                this.onAddNew();
-                this.showSucccess = true;
-            });
-        }
     }
 
     onEditBook(book: Book) {
@@ -89,6 +79,6 @@ export class BookUserComponent implements OnInit {
                 this.showSucccess = true;
             });
     }
-    
-  
+
+
 }
