@@ -10,14 +10,14 @@ import {AboutUsComponent} from './components/home/about-us/about-us.component';
     directives: [ROUTER_DIRECTIVES],
     providers: [BookService],
     template: `
-    <div (click)="onclick()" class="jumbotron">
+    <div (click)="onclick()" class="well well-sm container-fluid">
         <div class="page-header">
-            <h2><big>Shared Library</big><small>Because we should never stop reading</small></h2>
+                <h2 class="text-center">Sher'e Book</h2>
+                <img src="../images/ShereBook.jpg" class="center-block">
         </div>
     </div>
     <router-outlet></router-outlet>
     `
-
 })
 @RouteConfig([
     { path: '/books/...', name: 'BookCenter', component: BookCenterComponent },
