@@ -45,7 +45,7 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("/postfacebook")
+	@RequestMapping(path="/postfacebook", method=RequestMethod.POST)
 	public String facebook(Model model, @RequestParam String post) {
 		MultiValueMap<String, Connection<?>> connections = getConnectionRepository().findAllConnections();
 		if(post!=null){
