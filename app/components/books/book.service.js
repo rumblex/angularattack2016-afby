@@ -74,6 +74,9 @@ var BookService = (function () {
     BookService.prototype.getTopNewBooks = function () {
         return Observable_1.Observable.of(this.listBooks);
     };
+    BookService.prototype.getRandomBooks = function () {
+        return Observable_1.Observable.of(this.listBooks);
+    };
     BookService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_common_service_1.HttpServies])

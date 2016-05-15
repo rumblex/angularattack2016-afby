@@ -3,6 +3,7 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecate
 import {BookCenterComponent} from './components/books/book-center.component';
 import {HomeComponent} from './components/home/home.component';
 import { BookService } from './components/books/book.service';
+import {AboutUsComponent} from './components/home/about-us/about-us.component';
 
 @Component({
     selector: 'my-app',
@@ -10,7 +11,9 @@ import { BookService } from './components/books/book.service';
     providers: [BookService],
     template: `
     <div (click)="onclick()" class="jumbotron">
-        <h2>Shared Library</h2>
+        <div class="page-header">
+            <h2><big>Shared Library</big><small>Because we should never stop reading</small></h2>
+        </div>
     </div>
     <router-outlet></router-outlet>
     `
@@ -18,7 +21,8 @@ import { BookService } from './components/books/book.service';
 })
 @RouteConfig([
     { path: '/books/...', name: 'BookCenter', component: BookCenterComponent },
-    { path: '/', name: 'Home', component: HomeComponent, useAsDefault: true }
+    { path: '/', name: 'Home', component: HomeComponent, useAsDefault: true },
+    { path: '/aboutUs', name: 'AboutUs', component: AboutUsComponent }
 ])
 export class AppComponent {
 

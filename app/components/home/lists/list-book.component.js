@@ -25,7 +25,7 @@ var ListBookComponent = (function () {
     ListBookComponent = __decorate([
         core_1.Component({
             selector: 'list-book',
-            template: "\n        <ul class=\"list-group\">\n            <li *ngFor=\"let book of newBooks\" (click)=\"navigate(book.id)\" class=\"list-group-item\">{{book.title}}</li>\n        </ul>\n        "
+            template: "\n        <ul class=\"list-group\">\n            <li *ngFor=\"let book of newBooks\" (click)=\"navigate(book.id)\" \n            class=\"list-group-item\">{{book.title}} by {{book.authorName}}</li>\n        </ul>\n        "
         }), 
         __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], ListBookComponent);

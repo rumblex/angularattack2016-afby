@@ -36,12 +36,12 @@ export class BookService {
     }
 
     getBooks(searchString: string): Observable<Array<Book>> {
-        let param=new RequestParameters();
-        param.key='searchText';
-        param.value=searchString;
-        let params:Array<RequestParameters>=new Array<RequestParameters>();
+        let param = new RequestParameters();
+        param.key = 'searchText';
+        param.value = searchString;
+        let params: Array<RequestParameters> = new Array<RequestParameters>();
         params.push(param);
-        return this._httpService.callSearch("book/fuzzySearch",params);
+        return this._httpService.callSearch("book/fuzzySearch", params);
     }
 
     getBook(id: string): Observable<Book> {
@@ -61,24 +61,28 @@ export class BookService {
     }
 
     saveBook(book: Book): Observable<Book> {
-        book.id = this.listBooks.length+1;
+        book.id = this.listBooks.length + 1;
         this.listBooks.push(book);
         return Observable.of(book);
     }
-    
-    
+
+
     updateBook(book: Book): Observable<Book> {
-        book.id = this.listBooks.length+1;
+        book.id = this.listBooks.length + 1;
         this.listBooks.push(book);
         return Observable.of(book);
     }
-    
-    deleteBook(book:Book):Observable<Book>{
+
+    deleteBook(book: Book): Observable<Book> {
         this.listBooks.pop();
         return Observable.of(book);
     }
-    
+
     getTopNewBooks(): Observable<Array<Book>> {
+        return Observable.of(this.listBooks);
+    }
+
+    getRandomBooks(): Observable<Array<Book>> {
         return Observable.of(this.listBooks);
     }
 

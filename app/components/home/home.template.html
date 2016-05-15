@@ -1,41 +1,35 @@
 <div class="row">
-    <div class="col-sm-6 col-md-6" (click)="onclick()">
+    <div class="col-sm-6 col-md-4" (click)="onclick()">
         <div class="thumbnail">
             <img src="" alt="could not load image">
-            <div class="caption">
-                <h3>Search</h3>
-                <p>Search for books</p>
-                <p>
-                    <a class="btn btn-primary" role="button">Search</a>
-                </p>
-            </div>
+            <h3>Search</h3>
+            <p>Search for books</p>
         </div>
     </div>
-    <div class="col-sm-6 col-md-6" (click)="onclickUserView()">
+    <div class="col-sm-6 col-md-4" (click)="onclickUserView()">
         <div class="thumbnail">
             <img src="" alt="could not load image">
-            <div class="caption">
-                <h3>Your Books</h3>
-                <p>View your books</p>
-                <p>
-                    <a class="btn btn-primary" role="button">View</a>
-                </p>
-            </div>
+            <h3>Your Books</h3>
+            <p>View your books</p>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4" (click)="onclickAboutUs()">
+        <div class="thumbnail">
+            <img src="" alt="could not load image">
+            <h3>About Us</h3>
+            <p>Click here to know more about us</p>
         </div>
     </div>
     <div class="col-sm-6 col-md-6">
         <div class="thumbnail">
-            <h3>Recently added</h3>
-            <p>List of rercently added books</p>
+            <h3>Recentvly added</h3>
             <new-books></new-books>
         </div>
     </div>
     <div class="col-sm-6 col-md-6">
         <div class="thumbnail">
-            <img src="" alt="could not load image">
-            <div class="caption">
-                <h3>About Us</h3>
-            </div>
+            <h3>Have you read?</h3>
+            <random-books></random-books>
         </div>
     </div>
 </div>
