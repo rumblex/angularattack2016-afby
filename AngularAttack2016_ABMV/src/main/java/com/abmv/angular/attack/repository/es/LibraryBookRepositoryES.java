@@ -6,6 +6,7 @@ import java.util.concurrent.ExecutionException;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.FuzzyLikeThisFieldQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,18 @@ public class LibraryBookRepositoryES {
 	public List<BookES> fuzzyFilter(String text) throws InterruptedException, ExecutionException{
 		FuzzyLikeThisFieldQueryBuilder qb = QueryBuilders.fuzzyLikeThisFieldQuery("_all").likeText(text);
 		SearchResponse searchResponse = getSearchRequestBuilderBook().setQuery(qb).execute().get();
+		List<BookES> listResult=LibraryUtil.convertResponseToObjects(searchResponse);
+		return listResult;
+	}
+	
+	public List<BookES> fuzzyFilter(String text,Long id) throws InterruptedException, ExecutionException{
+		
+		FuzzyLikeThisFieldQueryBuilder qb = QueryBuilders.fuzzyLikeThisFieldQuery("_all").likeText(text);
+		
+		BoolQueryBuilder must = QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("ownerId", id))
+		.must(qb);
+		
+		SearchResponse searchResponse = getSearchRequestBuilderBook().setQuery(must).execute().get();
 		List<BookES> listResult=LibraryUtil.convertResponseToObjects(searchResponse);
 		return listResult;
 	}

@@ -2,14 +2,13 @@
   "name": "sharerd-lirary",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "start": "concurrently \"npm run tsc:w\" \"lite-server\" ",
     "e2e": "tsc && concurrently \"http-server\" \"protractor protractor.config.js\"",
     "lite": "lite-server",
     "postinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "typings": "typings",
-    "webdriver:update": "webdriver-manager update"
+    "typings": "typings"
   },
   "keywords": [],
   "author": "",

@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var Observable_1 = require('rxjs/Observable');
 var user_1 = require('../users/user');
 var book_1 = require('./book');
+var request_params_1 = require('../request.params');
 var http_common_service_1 = require('../http-common.service');
 var BookService = (function () {
     function BookService(_httpService) {
@@ -37,7 +38,12 @@ var BookService = (function () {
         ;
     };
     BookService.prototype.getBooks = function (searchString) {
-        return this._httpService.callSearch("book/getBooks");
+        var param = new request_params_1.RequestParameters();
+        param.key = 'searchText';
+        param.value = searchString;
+        var params = new Array();
+        params.push(param);
+        return this._httpService.callSearch("book/fuzzySearch", params);
     };
     BookService.prototype.getBook = function (id) {
         return Observable_1.Observable.of(this.listBooks[+id - 1]);

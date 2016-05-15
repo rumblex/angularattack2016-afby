@@ -16,8 +16,12 @@ var HttpServies = (function () {
         this.http = http;
         this._url = 'http://localhost:8080/';
     }
-    HttpServies.prototype.callSearch = function (path) {
-        return this.http.get(this._url + path).map(this.extractData).catch(this.handleError);
+    HttpServies.prototype.callSearch = function (path, passedParams) {
+        var params = new http_1.URLSearchParams();
+        passedParams.forEach(function (e) {
+            params.set(e.key, e.value);
+        });
+        return this.http.get(this._url + path, { search: params }).map(this.extractData).catch(this.handleError);
     };
     HttpServies.prototype.callSave = function (path, body) {
         return this.http.post(this._url + path, body);
@@ -26,7 +30,8 @@ var HttpServies = (function () {
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Response status: ' + res.status);
         }
-        var body = res.json()['content'];
+        var body = res.json();
+        console.log(body);
         return body;
     };
     HttpServies.prototype.handleError = function (error) {

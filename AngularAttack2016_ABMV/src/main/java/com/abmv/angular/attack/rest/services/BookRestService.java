@@ -1,6 +1,8 @@
 package com.abmv.angular.attack.rest.services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,15 @@ public class BookRestService {
 	
 	@RequestMapping("/getAll")
 	public Iterable<BookES> getBooks() throws Exception{
-		return bookSer.getAllBooks();
+		
+		Iterable<BookES> iter = bookSer.getAllBooks();
+		
+		Collection<BookES> list = new ArrayList<BookES>();
+	    for (BookES item : iter) {
+	        list.add(item);
+	    }
+	    return list;
+		
 	}
 	
 	@RequestMapping("/getUserLibrary/{id}")
@@ -48,9 +58,14 @@ public class BookRestService {
 		return bookSer.getLibrary(usrSer.getUserById(id));
 	}
 	
+	@RequestMapping("/{id}/fuzzySearch")
+	public List<BookES> fuzzySearch(@PathVariable() Long id,@RequestParam String searchText) throws Exception{
+		return bookSer.fuzzyFilter(searchText, id);
+	}
+	
 	@RequestMapping("/fuzzySearch")
-	public List<BookES> fuzzySearch(@RequestParam(defaultValue="lard") String text) throws Exception{
-		return bookSer.searchFuzzy(text);
+	public List<BookES> fuzzySearch(@RequestParam String searchText) throws Exception{
+		return bookSer.searchFuzzy(searchText);
 	}
 	
 	@RequestMapping("/getUsersHaving/{id}")

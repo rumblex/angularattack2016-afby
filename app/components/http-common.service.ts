@@ -1,6 +1,7 @@
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import {Http, Response, Headers, RequestOptions,URLSearchParams} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import {Injectable} from '@angular/core';
+import {RequestParameters} from './request.params';
 
 @Injectable()
 export class HttpServies {
@@ -9,8 +10,12 @@ export class HttpServies {
     private _url:string='http://localhost:8080/';
 
 
-    public callSearch(path:string){
-        return this.http.get(this._url+path).map(this.extractData).catch(this.handleError);
+    public callSearch(path:string,passedParams:Array<RequestParameters>){
+        let params = new URLSearchParams();
+        passedParams.forEach(e =>{
+            params.set(e.key,e.value);
+        }) ;
+        return this.http.get(this._url+path,{search:params}).map(this.extractData).catch(this.handleError);
     }
     
     public callSave(path:string,body:string){
@@ -21,7 +26,8 @@ export class HttpServies {
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Response status: ' + res.status);
         }
-        let body = res.json()['content'];
+        let body = res.json();
+        console.log(body);
         return body;
     }
     private handleError(error: any) {

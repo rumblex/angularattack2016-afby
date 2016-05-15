@@ -2,6 +2,7 @@ package com.abmv.angular.attack.service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import com.abmv.angular.attack.entities.es.BookES;
 import com.abmv.angular.attack.entities.sql.Book;
@@ -18,4 +19,6 @@ public interface BookService {
 	List<BookES> searchFuzzy(String text) throws Exception;
 	
 	List<User> findAllUserHavingBook(Long id);
+
+	List<BookES> fuzzyFilter(String text, Long id) throws InterruptedException, ExecutionException;
 }
