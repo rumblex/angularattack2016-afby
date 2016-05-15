@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutionException;
 
 import com.abmv.angular.attack.entities.es.BookES;
 import com.abmv.angular.attack.entities.sql.Book;
-import com.abmv.angular.attack.entities.sql.User;
+import com.abmv.angular.attack.entities.sql.AppUser;
 
 public interface BookService {
 	
@@ -14,11 +14,11 @@ public interface BookService {
 	
 	Iterable<BookES> getAllBooks();
 
-	Collection<Book> getLibrary(User id);
+	Collection<Book> getLibrary(AppUser id);
 	
 	List<BookES> searchFuzzy(String text) throws Exception;
 	
-	List<User> findAllUserHavingBook(Long id);
+	List<AppUser> findAllUserHavingBook(Long id);
 
 	List<BookES> fuzzyFilter(String text, Long id) throws InterruptedException, ExecutionException;
 }

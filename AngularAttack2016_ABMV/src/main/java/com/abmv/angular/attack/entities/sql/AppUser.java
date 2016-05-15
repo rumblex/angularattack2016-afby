@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-public class User {
+public class AppUser {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -23,10 +23,10 @@ public class User {
 	
 	private String emailId;
 	
-	public User() {
+	public AppUser() {
 	}
 	
-	public User(String name){
+	public AppUser(String name){
 		this.name=name;
 	}
 }
