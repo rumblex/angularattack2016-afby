@@ -21,6 +21,7 @@ import com.abmv.angular.attack.entities.sql.Book;
 import com.abmv.angular.attack.entities.sql.AppUser;
 import com.abmv.angular.attack.service.BookService;
 import com.abmv.angular.attack.service.UserService;
+import com.abmv.angular.attack.util.LibraryUtil;
 
 @CrossOrigin
 @RestController
@@ -35,9 +36,10 @@ public class BookRestService {
 	
 	@RequestMapping(value= "/add", method = RequestMethod.POST,
 			consumes="application/json")
-	public ResponseEntity addBook(@RequestBody Book b){
+	public Book addBook(@RequestBody Book b){
+		b.setOwner(usrSer.getUserById(LibraryUtil.getLoggedInUserId()));
 		b=bookSer.addBook(b);
-		return new ResponseEntity(b, HttpStatus.OK);
+		return b;
 	}
 	
 	@RequestMapping("/getAll")
@@ -53,9 +55,9 @@ public class BookRestService {
 		
 	}
 	
-	@RequestMapping("/getUserLibrary/{id}")
-	public Collection<Book> getLibrary(@PathVariable Long id){
-		return bookSer.getLibrary(usrSer.getUserById(id));
+	@RequestMapping("/getUserLibrary")
+	public Collection<Book> getLibrary(){
+		return bookSer.getLibrary(usrSer.getUserById(LibraryUtil.getLoggedInUserId()));
 	}
 	
 	@RequestMapping("/{id}/fuzzySearch")

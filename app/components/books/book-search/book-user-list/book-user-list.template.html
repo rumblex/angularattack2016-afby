@@ -31,6 +31,12 @@
           <div class="form-group">
             <label for="name">Title</label>
             <input type="text" class="form-control" required [(ngModel)]="book.title" ngControl="fTitle" #fTitle="ngForm">
+            <label for="name">Author Name</label>
+            <input type="text" class="form-control" required [(ngModel)]="book.authorName" ngControl="fTitle" #fTitle="ngForm">
+            <label for="name">Genre</label>
+            <input type="text" class="form-control" required [(ngModel)]="genreString" ngControl="fTitle" #fTitle="ngForm">
+            <label for="name">Rating</label>
+            <input type="text" class="form-control" required [(ngModel)]="book.rating" ngControl="fTitle" #fTitle="ngForm">
             <div [hidden]="fTitle.valid || fTitle.pristine" class="alert alert-danger">
               Title is required
             </div>
