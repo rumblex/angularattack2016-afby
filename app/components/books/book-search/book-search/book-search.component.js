@@ -29,7 +29,7 @@ var BookSearchComponent = (function () {
         var _this = this;
         this.textSearch = this.routeParams.get('query');
         if (this.textSearch) {
-            this._bookService.getMockBooks(this.textSearch)
+            this._bookService.getBooks(this.textSearch)
                 .subscribe(function (data) {
                 _this.listResults = data;
             });

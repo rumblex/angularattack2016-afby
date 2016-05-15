@@ -30,7 +30,7 @@ export class BookSearchComponent implements OnInit {
     doSearch() {
         this.textSearch = this.routeParams.get('query');
         if (this.textSearch) {
-            this._bookService.getMockBooks(this.textSearch)
+            this._bookService.getBooks(this.textSearch)
                 .subscribe(data => {
                     this.listResults = data;
                 });

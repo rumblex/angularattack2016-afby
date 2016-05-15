@@ -18,6 +18,7 @@ public class LibraryUtil {
 		bookES.setRating(b.getRating());
 		bookES.setSharable(b.isSharable());
 		bookES.setTitle(b.getTitle());
+		bookES.setOwnerId(b.getOwner().getId());
 		return bookES;
 	}
 
@@ -32,6 +33,7 @@ public class LibraryUtil {
 			be.setRating(Integer.valueOf(e.getSource().get("rating").toString()));
 			be.setSharable(Boolean.valueOf(e.getSource().get("sharable").toString()));
 			be.setTitle(e.getSource().get("title").toString());
+			be.setOwnerId(Long.valueOf(e.getSource().get("ownerId").toString()));
 			li.add(be);
 		});
 		return li;

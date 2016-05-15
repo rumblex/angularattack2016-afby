@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HTTP_PROVIDERS, Http }    from '@angular/http';
-
-
 import {LibUser} from '../users/user';
 import { Book } from './book';
+import {RequestParameters} from '../request.params';
 import {HttpServies} from '../http-common.service';
-
 
 
 @Injectable()
@@ -38,7 +36,12 @@ export class BookService {
     }
 
     getBooks(searchString: string): Observable<Array<Book>> {
-        return this._httpService.callSearch("book/getBooks");
+        let param=new RequestParameters();
+        param.key='searchText';
+        param.value=searchString;
+        let params:Array<RequestParameters>=new Array<RequestParameters>();
+        params.push(param);
+        return this._httpService.callSearch("book/fuzzySearch",params);
     }
 
     getBook(id: string): Observable<Book> {

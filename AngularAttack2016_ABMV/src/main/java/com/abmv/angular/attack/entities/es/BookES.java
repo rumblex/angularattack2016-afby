@@ -25,6 +25,6 @@ public class BookES {
 	
 	private Integer rating;
 	
-	
+	private Long ownerId;
 	
 }

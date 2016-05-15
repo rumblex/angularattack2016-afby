@@ -3,6 +3,7 @@ package com.abmv.angular.attack.service.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,6 +58,10 @@ public class BookServiceImpl implements BookService{
 		return liU;
 	}
 	
+	@Override
+	public List<BookES> fuzzyFilter(String text,Long id) throws InterruptedException, ExecutionException{
+		return libEs.fuzzyFilter(text,	 id);
+	}
 	
 	
 }
