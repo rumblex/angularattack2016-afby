@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.abmv.angular.attack.entities.es.BookES;
 import com.abmv.angular.attack.entities.sql.Book;
-import com.abmv.angular.attack.entities.sql.User;
+import com.abmv.angular.attack.entities.sql.AppUser;
 import com.abmv.angular.attack.service.BookService;
 import com.abmv.angular.attack.service.UserService;
 
@@ -69,7 +69,7 @@ public class BookRestService {
 	}
 	
 	@RequestMapping("/getUsersHaving/{id}")
-	public List<User> getAllUser(@PathVariable Long id){
+	public List<AppUser> getAllUser(@PathVariable Long id){
 		return bookSer.findAllUserHavingBook(id);
 	}
 }

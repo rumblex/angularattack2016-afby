@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
-import com.abmv.angular.attack.entities.sql.User;
+import com.abmv.angular.attack.entities.sql.AppUser;
 import com.abmv.angular.attack.social.security.SocialAuthenticator;
 
 
@@ -82,9 +82,9 @@ class AuthenticationResource {
     AuthenticationManager authenticationManager;
 
     @RequestMapping(method = RequestMethod.GET)
-    public User session(Principal user) {
+    public AppUser session(Principal user) {
         String name = user == null ? null : user.getName();
-        return new User(name);
+        return new AppUser(name);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)

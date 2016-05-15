@@ -1,13 +1,13 @@
 package com.abmv.angular.attack.service;
 
-import com.abmv.angular.attack.entities.sql.User;
+import com.abmv.angular.attack.entities.sql.AppUser;
 
 public interface UserService {
 
-	User registerUser(User u);
+	AppUser registerUser(AppUser u);
 	
-	User getUserById(Long id);
+	AppUser getUserById(Long id);
 	
-	Iterable<User> getAllUsers();
+	Iterable<AppUser> getAllUsers();
 	
 }

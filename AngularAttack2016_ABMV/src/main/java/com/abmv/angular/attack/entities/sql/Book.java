@@ -37,10 +37,10 @@ public class Book {
 	
 	@ManyToOne
 	@JoinColumn(name="owner_id")
-	private User owner;
+	private AppUser owner;
 	
 	@OneToOne
-	private User loanedTo;
+	private AppUser loanedTo;
 	
 	@ElementCollection(targetClass=Genre.class)	
 	@Enumerated(EnumType.STRING)

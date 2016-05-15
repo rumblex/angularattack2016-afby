@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.abmv.angular.attack.entities.es.BookES;
 import com.abmv.angular.attack.entities.sql.Book;
-import com.abmv.angular.attack.entities.sql.User;
+import com.abmv.angular.attack.entities.sql.AppUser;
 import com.abmv.angular.attack.repository.es.LibraryBookRepositoryES;
 import com.abmv.angular.attack.repository.sql.BookRepository;
 import com.abmv.angular.attack.service.BookService;
@@ -39,7 +39,7 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public Collection<Book> getLibrary(User id) {
+	public Collection<Book> getLibrary(AppUser id) {
 		return bookRep.findByOwner(id);
 	}
 
@@ -49,9 +49,9 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public List<User> findAllUserHavingBook(Long id) {
+	public List<AppUser> findAllUserHavingBook(Long id) {
 		Collection<Book> findByTitle = bookRep.findByTitle(bookRep.findOne(id).getTitle());
-		List<User> liU=new ArrayList<>();
+		List<AppUser> liU=new ArrayList<>();
 		findByTitle.forEach(e->{
 			liU.add(e.getOwner());
 		});
