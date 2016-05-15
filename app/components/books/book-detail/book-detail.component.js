@@ -10,17 +10,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
+var book_1 = require('../book');
 var book_service_1 = require('../book.service');
 var BookDetailComponent = (function () {
     function BookDetailComponent(_bookService, routeParams) {
         this._bookService = _bookService;
         this.routeParams = routeParams;
+        this.book = new book_1.Book();
     }
     BookDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.id = this.routeParams.get('id');
         this._bookService.getBook(this.id)
-            .subscribe(function (data) { _this.book = data; });
+            .subscribe(function (data) {
+            _this.book = data;
+            console.log(_this.book.title);
+        });
         this._bookService.getUsersForBook(this.id)
             .subscribe(function (data) { _this.listUser = data; });
     };

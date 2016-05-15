@@ -45,11 +45,11 @@ export class BookService {
     }
 
     getBook(id: string): Observable<Book> {
-        return Observable.of(this.listBooks[+id - 1]);
+        return this._httpService.callSearch("book/getBook/"+id,null);
     }
 
     getUsersForBook(id: string): Observable<Array<LibUser>> {
-        return Observable.of(this.listUser);
+        return this._httpService.callSearch("book/getUsersHaving/"+id,null);
     }
 
     getUserBooks(searchString: string): Observable<Array<Book>> {
@@ -62,30 +62,21 @@ export class BookService {
     }
 
     saveBook(book: Book): Observable<Book> {
-        book.id = this.listBooks.length + 1;
-        this.listBooks.push(book);
         return this._httpService.callSave("book/add",JSON.stringify(book));
         //return Observable.of(book);
     }
+    
+    deleteBook(book:Book):Observable<boolean>{
 
-
-    updateBook(book: Book): Observable<Book> {
-        book.id = this.listBooks.length + 1;
-        this.listBooks.push(book);
-        return Observable.of(book);
-    }
-
-    deleteBook(book: Book): Observable<Book> {
-        this.listBooks.pop();
-        return Observable.of(book);
+        return this._httpService.callDelete("book/delete",JSON.stringify(book));
     }
 
     getTopNewBooks(): Observable<Array<Book>> {
-        return Observable.of(this.listBooks);
+        return this._httpService.callSearch("book/getLatestBook",null);
     }
 
     getRandomBooks(): Observable<Array<Book>> {
-        return Observable.of(this.listBooks);
+       return this._httpService.callSearch("book/getMostRead",null);
     }
 
 }

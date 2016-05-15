@@ -26,14 +26,12 @@ export class BookUserComponent implements OnInit {
     }
 
     onSubmit() {
-        this.router.navigate(['BookCenter', 'BookUserComponent', { query: this.textSearch }]);
         this.doSearch();
     }
 
     doSearch() {
-        this.textSearch = this.routeParams.get('query');
         if (this.textSearch) {
-            this._bookService.getUserBooks(this.textSearch)
+            this._bookService.getBooks(this.textSearch)
                 .subscribe(data => {
                     this.listResults = data;
                 });
@@ -55,6 +53,7 @@ export class BookUserComponent implements OnInit {
         this.book = new Book();
         this.showSucccess = false;
         this.active = false;
+        this.doSearch();
         setTimeout(() => this.active = true, 0);
     }
 
@@ -84,10 +83,12 @@ export class BookUserComponent implements OnInit {
     }
 
     onDeleteBook(book: Book) {
-        this._bookService.saveBook(book)
+        this._bookService.deleteBook(book)
             .subscribe(data => {
-                this.onAddNew();
+                this.doSearch();
                 this.showSucccess = true;
             });
     }
+    
+  
 }

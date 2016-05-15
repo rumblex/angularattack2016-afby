@@ -10,7 +10,7 @@ import {LibUser} from '../../users/user';
 })
 export class BookDetailComponent implements OnInit { 
         
-    private book:Book;
+    private book:Book=new Book();
     private id:string;
     private listUser:Array<LibUser>;
     
@@ -19,7 +19,9 @@ export class BookDetailComponent implements OnInit {
     ngOnInit(){
          this.id = this.routeParams.get('id');
          this._bookService.getBook(this.id)
-            .subscribe(data => {this.book = data});
+            .subscribe(data => {this.book = data;
+            console.log(this.book.title);    
+            });
          this._bookService.getUsersForBook(this.id)
             .subscribe(data => {this.listUser = data});       
     }    

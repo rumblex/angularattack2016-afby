@@ -19,7 +19,7 @@ public class AppUser {
 	
 	private String name;
 	
-	private String contactNo;
+	private String contact;
 	
 	private String emailId;
 	

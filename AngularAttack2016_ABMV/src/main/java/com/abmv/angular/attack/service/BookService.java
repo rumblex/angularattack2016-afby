@@ -21,4 +21,10 @@ public interface BookService {
 	List<AppUser> findAllUserHavingBook(Long id);
 
 	List<BookES> fuzzyFilter(String text, Long id) throws InterruptedException, ExecutionException;
+
+	void removeBook(Book b);
+
+	Book getBookById(Long id);
+
+	Collection<Book> getLatestBooks();
 }

@@ -1,6 +1,6 @@
 export class Book {
 
-    public id: number;
+    public bookId: number;
     public title: string;
     public authorName: string;
     public sharable: boolean;
@@ -8,7 +8,7 @@ export class Book {
     public genres: Array<string>;
 
     constructor(obj?:any ) {
-        this.id = obj && obj.id || null;
+        this.bookId = obj && obj.id || null;
         this.title = obj && obj.title || null;
         this.authorName = obj && obj.authorName || null;
         this.sharable = obj && obj.sharable || null;

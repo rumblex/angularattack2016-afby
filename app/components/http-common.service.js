@@ -30,6 +30,11 @@ var HttpServies = (function () {
         header.set('Content-Type', 'application/json');
         return this.http.post(this._url + path, body, { headers: header }).map(this.extractData).catch(this.handleError);
     };
+    HttpServies.prototype.callDelete = function (path, body) {
+        var header = new http_1.Headers();
+        header.set('Content-Type', 'application/json');
+        return this.http.post(this._url + path, body, { headers: header }).map(this.extractData).catch(this.handleError);
+    };
     HttpServies.prototype.extractData = function (res) {
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Response status: ' + res.status);

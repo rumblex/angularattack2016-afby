@@ -46,10 +46,10 @@ var BookService = (function () {
         return this._httpService.callSearch("book/fuzzySearch", params);
     };
     BookService.prototype.getBook = function (id) {
-        return Observable_1.Observable.of(this.listBooks[+id - 1]);
+        return this._httpService.callSearch("book/getBook/" + id, null);
     };
     BookService.prototype.getUsersForBook = function (id) {
-        return Observable_1.Observable.of(this.listUser);
+        return this._httpService.callSearch("book/getUsersHaving/" + id, null);
     };
     BookService.prototype.getUserBooks = function (searchString) {
         return Observable_1.Observable.of(this.listBooks);
@@ -59,25 +59,17 @@ var BookService = (function () {
         //return Observable.of(this.listBooks);
     };
     BookService.prototype.saveBook = function (book) {
-        book.id = this.listBooks.length + 1;
-        this.listBooks.push(book);
         return this._httpService.callSave("book/add", JSON.stringify(book));
         //return Observable.of(book);
     };
-    BookService.prototype.updateBook = function (book) {
-        book.id = this.listBooks.length + 1;
-        this.listBooks.push(book);
-        return Observable_1.Observable.of(book);
-    };
     BookService.prototype.deleteBook = function (book) {
-        this.listBooks.pop();
-        return Observable_1.Observable.of(book);
+        return this._httpService.callDelete("book/delete", JSON.stringify(book));
     };
     BookService.prototype.getTopNewBooks = function () {
-        return Observable_1.Observable.of(this.listBooks);
+        return this._httpService.callSearch("book/getLatestBook", null);
     };
     BookService.prototype.getRandomBooks = function () {
-        return Observable_1.Observable.of(this.listBooks);
+        return this._httpService.callSearch("book/getMostRead", null);
     };
     BookService = __decorate([
         core_1.Injectable(), 

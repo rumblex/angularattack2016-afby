@@ -26,14 +26,12 @@ var BookUserComponent = (function () {
         this.doSearch();
     };
     BookUserComponent.prototype.onSubmit = function () {
-        this.router.navigate(['BookCenter', 'BookUserComponent', { query: this.textSearch }]);
         this.doSearch();
     };
     BookUserComponent.prototype.doSearch = function () {
         var _this = this;
-        this.textSearch = this.routeParams.get('query');
         if (this.textSearch) {
-            this._bookService.getUserBooks(this.textSearch)
+            this._bookService.getBooks(this.textSearch)
                 .subscribe(function (data) {
                 _this.listResults = data;
             });
@@ -55,6 +53,7 @@ var BookUserComponent = (function () {
         this.book = new book_1.Book();
         this.showSucccess = false;
         this.active = false;
+        this.doSearch();
         setTimeout(function () { return _this.active = true; }, 0);
     };
     BookUserComponent.prototype.onSaveBook = function () {
@@ -84,9 +83,9 @@ var BookUserComponent = (function () {
     };
     BookUserComponent.prototype.onDeleteBook = function (book) {
         var _this = this;
-        this._bookService.saveBook(book)
+        this._bookService.deleteBook(book)
             .subscribe(function (data) {
-            _this.onAddNew();
+            _this.doSearch();
             _this.showSucccess = true;
         });
     };

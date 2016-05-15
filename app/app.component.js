@@ -27,7 +27,7 @@ var AppComponent = (function () {
             selector: 'my-app',
             directives: [router_deprecated_1.ROUTER_DIRECTIVES],
             providers: [book_service_1.BookService, login_service_1.LoginService],
-            template: "\n    <div (click)=\"onclick()\" class=\"jumbotron\">\n        <div class=\"page-header\">\n            <h2><big>Shared Library</big><small>Because we should never stop reading</small></h2>\n        </div>\n    </div>\n    <router-outlet></router-outlet>\n    "
+            template: "\n    <div (click)=\"onclick()\" class=\"well well-sm container-fluid\">\n        <div class=\"page-header\">\n                <h2 class=\"text-center\">Sher'e Book</h2>\n                <img src=\"../images/ShereBook.jpg\" class=\"center-block\">\n        </div>\n    </div>\n    <router-outlet></router-outlet>\n    "
         }),
         router_deprecated_1.RouteConfig([
             { path: '/books/...', name: 'BookCenter', component: book_center_component_1.BookCenterComponent },

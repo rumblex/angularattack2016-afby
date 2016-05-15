@@ -14,4 +14,6 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 	
 	Collection<Book> findByTitle(String title);
 	
+	Collection<Book> findAllByOrderByBookIdDesc();
+	
 }
