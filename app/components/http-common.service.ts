@@ -22,7 +22,6 @@ export class HttpServies {
             throw new Error('Response status: ' + res.status);
         }
         let body = res.json()['content'];
-        console.log("data :::  "+JSON.stringify(body));
         return body;
     }
     private handleError(error: any) {
