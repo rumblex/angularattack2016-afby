@@ -63,12 +63,12 @@ public class BookRestService {
 	}
 	
 	@RequestMapping("/{id}/fuzzySearch")
-	public List<BookES> fuzzySearch(@PathVariable() Long id,@RequestParam String searchText) throws Exception{
+	public List<Book> fuzzySearch(@PathVariable() Long id,@RequestParam String searchText) throws Exception{
 		return bookSer.fuzzyFilter(searchText, id);
 	}
 	
 	@RequestMapping("/fuzzySearch")
-	public List<BookES> fuzzySearch(@RequestParam String searchText) throws Exception{
+	public List<Book> fuzzySearch(@RequestParam String searchText) throws Exception{
 		return bookSer.searchFuzzy(searchText);
 	}
 	
