@@ -30,8 +30,7 @@ public class BookRestService {
 	@Autowired
 	UserService usrSer;
 	
-	@RequestMapping(value= "/{usrId}/add", method = RequestMethod.POST,
-			consumes="application/json")
+	@RequestMapping(value= "/{usrId}/add", method = RequestMethod.POST)
 	public Book addBook(@PathVariable Long usrId,@RequestBody Book b){
 		b.setOwner(usrSer.getUserById(usrId));
 		b=bookSer.addBook(b);

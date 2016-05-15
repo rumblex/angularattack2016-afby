@@ -16,8 +16,7 @@ public class UserRestService {
 	@Autowired
 	UserService usrSer;
 	
-	@RequestMapping(value= "/register", method = RequestMethod.POST,
-			consumes="application/json")
+	@RequestMapping(value= "/register", method = RequestMethod.POST)
 	public AppUser register(@RequestBody AppUser u){
 		return usrSer.registerUser(u);
 	}
@@ -27,7 +26,7 @@ public class UserRestService {
 		return usrSer.getAllUsers();
 	}
 	
-	@RequestMapping(value="/authenticate",method=RequestMethod.POST,consumes="application/json")
+	@RequestMapping(value="/authenticate",method=RequestMethod.POST)
 	public AppUser authenticate(@RequestBody AppUser au){
 		AppUser u=usrSer.getUserByUsername(au.getName());
 		if(u.getPassword().equals(au.getPassword())){
