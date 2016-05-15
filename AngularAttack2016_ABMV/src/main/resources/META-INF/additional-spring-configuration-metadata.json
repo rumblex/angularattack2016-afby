@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "spring.social.twitter.access-token",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.social.twitter.access-token'"
+  },
+  {
+    "name": "spring.social.twitter.access-secret",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.social.twitter.access-secret'"
+  },
+  {
+    "name": "spring.social.twitter.access-token-secret",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.social.twitter.access-token-secret'"
+  }
+]}

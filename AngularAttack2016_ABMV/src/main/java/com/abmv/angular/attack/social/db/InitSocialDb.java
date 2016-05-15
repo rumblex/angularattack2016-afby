@@ -23,6 +23,8 @@ public class InitSocialDb implements InitializingBean{
     public void afterPropertiesSet() throws Exception {
         ClassPathResource resource = new ClassPathResource("org/springframework/social/connect/jdbc/JdbcUsersConnectionRepository.sql");
         runScript(resource);
+        resource = new ClassPathResource("/sample_data.sql");
+        runScript(resource);
     }
 
     private void runScript(Resource resource) {
