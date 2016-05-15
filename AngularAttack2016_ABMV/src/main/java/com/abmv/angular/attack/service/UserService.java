@@ -9,5 +9,7 @@ public interface UserService {
 	AppUser getUserById(Long id);
 	
 	Iterable<AppUser> getAllUsers();
+
+	AppUser getUserByUsername(String name);
 	
 }

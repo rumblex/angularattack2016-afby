@@ -1,11 +1,8 @@
 package com.abmv.angular.attack.service.impl;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.abmv.angular.attack.entities.sql.Book;
 import com.abmv.angular.attack.entities.sql.AppUser;
 import com.abmv.angular.attack.repository.sql.UserRepository;
 import com.abmv.angular.attack.service.UserService;
@@ -29,6 +26,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Iterable<AppUser> getAllUsers() {
 		return usrRepo.findAll();
+	}
+
+	@Override
+	public AppUser getUserByUsername(String name) {
+		return usrRepo.findByName(name);
 	}
 
 	

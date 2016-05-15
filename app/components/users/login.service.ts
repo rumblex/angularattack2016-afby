@@ -1,17 +1,21 @@
 import {Injectable} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {LibUser} from './user';
+import {HttpServies} from '../http-common.service';
 
 @Injectable()
 export class LoginService {
 
     public user: LibUser;
 
-    constructor() { }
+    constructor(private _httpService: HttpServies) {
+
+    }
+
 
     login(user: LibUser): Observable<LibUser> {
         this.user = user;
-        return Observable.of(this.user);
+        return this._httpService.callSave("user/authenticate",JSON.stringify(user));  
     }
 
     logout(): Observable<LibUser> {
@@ -19,8 +23,8 @@ export class LoginService {
         return Observable.of(this.user);
     }
 
-    signUp(user: LibUser): Observable<LibUser> {
+    signUp(user: LibUser){
         this.user = user;
-        return Observable.of(this.user);
+        return this._httpService.callSave("user/register",JSON.stringify(user));
     }
 }

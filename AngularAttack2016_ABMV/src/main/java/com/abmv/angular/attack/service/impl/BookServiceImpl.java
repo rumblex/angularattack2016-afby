@@ -34,8 +34,19 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public Iterable<BookES> getAllBooks(){
-		return libEs.findAll();
+	public List<Book> getAllBooks(){
+		
+		Iterable<BookES> fuzzyFilter = libEs.findAll();
+		List<Book> lib=new ArrayList<>();
+		
+		fuzzyFilter.forEach(e->{
+			Book b=covertToBook(e);
+			if(b!=null){
+				lib.add(b);
+			}
+		});
+		
+		return lib;
 	}
 
 	@Override
@@ -48,7 +59,12 @@ public class BookServiceImpl implements BookService{
 		List<BookES> fuzzyFilter = libEs.fuzzyFilter(text);
 		List<Book> lib=new ArrayList<>();
 		
-		fuzzyFilter.forEach(e->lib.add(covertToBook(e)));
+		fuzzyFilter.forEach(e->{
+			Book b=covertToBook(e);
+			if(b!=null){
+				lib.add(b);
+			}
+		});
 		
 		return lib;
 	}
@@ -69,7 +85,12 @@ public class BookServiceImpl implements BookService{
 		List<BookES> fuzzyFilter = libEs.fuzzyFilter(text,	 id);;
 		List<Book> lib=new ArrayList<>();
 		
-		fuzzyFilter.forEach(e->lib.add(covertToBook(e)));
+		fuzzyFilter.forEach(e->{
+			Book b=covertToBook(e);
+			if(b!=null){
+				lib.add(b);
+			}
+		});
 		
 		return lib;
 	}

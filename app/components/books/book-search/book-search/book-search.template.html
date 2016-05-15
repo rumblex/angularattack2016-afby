@@ -2,7 +2,7 @@
     <legend>Book Search</legend>
     <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
         <div class="form-group">
-            <label for="name">Search</label>
+            <label for="name">Enter search text :(Fuzzy search against all attributes)</label>
             <input type="text" class="form-control" required [(ngModel)]="textSearch" ngControl="searchText" #searchText="ngForm">
         </div>
         <button type="submit" class="btn btn-default" [disabled]="!searchForm.form.valid">Submit</button>

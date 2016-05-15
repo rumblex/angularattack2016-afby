@@ -12,7 +12,7 @@ public interface BookService {
 	
 	Book addBook(Book s);
 	
-	Iterable<BookES> getAllBooks();
+	List<Book> getAllBooks();
 
 	Collection<Book> getLibrary(AppUser id);
 	

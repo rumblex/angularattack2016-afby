@@ -1,15 +1,10 @@
 package com.abmv.angular.attack.rest.services;
 
-import java.lang.invoke.MethodType;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,11 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.abmv.angular.attack.entities.es.BookES;
-import com.abmv.angular.attack.entities.sql.Book;
 import com.abmv.angular.attack.entities.sql.AppUser;
+import com.abmv.angular.attack.entities.sql.Book;
 import com.abmv.angular.attack.service.BookService;
 import com.abmv.angular.attack.service.UserService;
-import com.abmv.angular.attack.util.LibraryUtil;
 
 @CrossOrigin
 @RestController
@@ -36,35 +30,27 @@ public class BookRestService {
 	@Autowired
 	UserService usrSer;
 	
-	@RequestMapping(value= "/add", method = RequestMethod.POST,
+	@RequestMapping(value= "/{usrId}/add", method = RequestMethod.POST,
 			consumes="application/json")
-	public Book addBook(@RequestBody Book b){
-		b.setOwner(usrSer.getUserById(LibraryUtil.getLoggedInUserId()));
+	public Book addBook(@PathVariable Long usrId,@RequestBody Book b){
+		b.setOwner(usrSer.getUserById(usrId));
 		b=bookSer.addBook(b);
 		return b;
 	}
 	
 	@RequestMapping("/getAll")
-	public Iterable<BookES> getBooks() throws Exception{
-		
-		Iterable<BookES> iter = bookSer.getAllBooks();
-		
-		Collection<BookES> list = new ArrayList<BookES>();
-	    for (BookES item : iter) {
-	        list.add(item);
-	    }
-	    return list;
-		
+	public List<Book> getBooks() throws Exception{
+		 return bookSer.getAllBooks();
 	}
 	
-	@RequestMapping("/getUserLibrary")
-	public Collection<Book> getLibrary(){
-		return bookSer.getLibrary(usrSer.getUserById(LibraryUtil.getLoggedInUserId()));
+	@RequestMapping("/{usrId}/getUserLibrary")
+	public Collection<Book> getLibrary(@PathVariable Long usrId){
+		return bookSer.getLibrary(usrSer.getUserById(usrId));
 	}
 	
-	@RequestMapping("/{id}/fuzzySearch")
-	public List<Book> fuzzySearch(@PathVariable() Long id,@RequestParam String searchText) throws Exception{
-		return bookSer.fuzzyFilter(searchText, id);
+	@RequestMapping("/{usrId}/fuzzySearch")
+	public List<Book> fuzzySearch(@PathVariable Long usrId,@RequestParam String searchText) throws Exception{
+		return bookSer.fuzzyFilter(searchText, usrId);
 	}
 	
 	@RequestMapping("/fuzzySearch")

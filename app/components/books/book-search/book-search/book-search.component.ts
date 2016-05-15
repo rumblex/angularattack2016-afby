@@ -34,6 +34,8 @@ export class BookSearchComponent implements OnInit {
                 .subscribe(data => {
                     this.listResults = data;
                 });
+        }else{
+            this._bookService.getAllBooks().subscribe(data => this.listResults= data);
         }
     }
 

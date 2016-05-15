@@ -6,7 +6,7 @@ import {Book} from '../../books/book';
     selector: 'list-book',
     template: `
         <ul class="list-group">
-            <li *ngFor="let book of newBooks" (click)="navigate(book.id)" 
+            <li *ngFor="let book of newBooks" (click)="navigate(book.bookId)" 
             class="list-group-item">{{book.title}} by {{book.authorName}}</li>
         </ul>
         `

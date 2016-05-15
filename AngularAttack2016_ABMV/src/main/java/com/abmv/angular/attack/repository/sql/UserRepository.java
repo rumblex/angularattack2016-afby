@@ -6,5 +6,6 @@ import com.abmv.angular.attack.entities.sql.AppUser;
 
 public interface UserRepository extends CrudRepository<AppUser, Long> {
 
+	AppUser findByName(String name);
 	
 }

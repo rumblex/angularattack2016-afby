@@ -5,6 +5,7 @@ import javax.persistence.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import com.abmv.angular.attack.util.LibConstants;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 import lombok.Setter;

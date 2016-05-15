@@ -5,12 +5,12 @@ import {LibUser} from '../users/user';
 import { Book } from './book';
 import {RequestParameters} from '../request.params';
 import {HttpServies} from '../http-common.service';
-
+import {LoginService} from './../users/login.service';
 
 @Injectable()
 export class BookService {
 
-    constructor(private _httpService: HttpServies) {
+    constructor(private _httpService: HttpServies,private _loginService:LoginService) {
 
     }
 
@@ -31,8 +31,9 @@ export class BookService {
         new LibUser("Yun Lee", "mumbai", "1111111111111"),
         new LibUser("Aaron", "mumbai", "1111111111111")
     ]
-    getMockBooks(searchString: string): Observable<Array<Book>> {
-        return Observable.of(this.listBooks);;
+    
+    getAllBooks(): Observable<Array<Book>> {
+        return this._httpService.callSearch("book/getAll", null);
     }
 
     getBooks(searchString: string): Observable<Array<Book>> {
@@ -57,12 +58,12 @@ export class BookService {
     }
 
     getAllUserBooks(): Observable<Array<Book>> {
-        return this._httpService.callSearch("book/getUserLibrary",null);
+        return this._httpService.callSearch("book/"+this._loginService.user.id+"/getUserLibrary",null);
         //return Observable.of(this.listBooks);
     }
 
     saveBook(book: Book): Observable<Book> {
-        return this._httpService.callSave("book/add",JSON.stringify(book));
+        return this._httpService.callSave("book/"+this._loginService.user.id+"/add",JSON.stringify(book));
         //return Observable.of(book);
     }
     

@@ -1,8 +1,6 @@
 package com.abmv.angular.attack.rest.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,14 +18,23 @@ public class UserRestService {
 	
 	@RequestMapping(value= "/register", method = RequestMethod.POST,
 			consumes="application/json")
-	public ResponseEntity register(@RequestBody AppUser u){
-		usrSer.registerUser(u);
-		return new ResponseEntity(u, HttpStatus.OK);
+	public AppUser register(@RequestBody AppUser u){
+		return usrSer.registerUser(u);
 	}
 	
 	@RequestMapping("/getAll")
 	public Iterable<AppUser> getAllUsers(){
 		return usrSer.getAllUsers();
+	}
+	
+	@RequestMapping(value="/authenticate",method=RequestMethod.POST)
+	public AppUser authenticate(@RequestBody AppUser au){
+		AppUser u=usrSer.getUserByUsername(au.getName());
+		if(u.getPassword().equals(au.getPassword())){
+			return u;
+		}else{
+			return null;
+		}
 	}
 	
 	

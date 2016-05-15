@@ -21,12 +21,12 @@ import {Book} from '../../book';
             <button type="button" class="btn btn-default" (click)="onDelete()">Delete</button>    
         </div>
       </div>
-    <div>
+    </div>
     `
 })
 export class BookItemComponent implements OnInit {
 
-  @Input() private book: Book;
+  @Input() private book: Book=new Book();
   @Output() private bookEdited: EventEmitter<Book>;
   @Output() private bookDeleted: EventEmitter<Book>;
 

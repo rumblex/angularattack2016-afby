@@ -52,8 +52,9 @@ export class HomeComponent implements OnInit {
         this._loginService.login(checkUser)
             .subscribe(data => {
                 this.user = data;
-                $("#cLoginForm").modal('hide');
-            });
+                this._loginService.user=data;
+                $("#cLoginForm").modal('hide');}
+            );
     }
 
     onLogout() {
@@ -65,10 +66,12 @@ export class HomeComponent implements OnInit {
     
     onSignUp(){
         let checkUser: LibUser = new LibUser(this.userName, this.password,this.contact);
-        this._loginService.login(checkUser)
+        this._loginService.signUp(checkUser)
             .subscribe(data => {
                 this.user = data;
-                $("#cSignUpForm").modal('hide');
-            });
+                this._loginService.user=data;
+                $("#cSignUpForm").modal('hide');}
+            );;
+            
     }
 }
