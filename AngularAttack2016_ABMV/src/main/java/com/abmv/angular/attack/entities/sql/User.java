@@ -17,8 +17,19 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
+	private String name;
+	
 	private String contactNo;
 	
 	private String emailId;
 	
+	@OneToMany
+	private Set<Book> library;
+	
+	public User() {
+	}
+	
+	public User(String name){
+		this.name=name;
+	}
 }
