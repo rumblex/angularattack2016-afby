@@ -1,5 +1,7 @@
 node_modules
 npm-debug.log
+*.js
+*.js.map
 /AngularAttack2016_ABMV/.settings
 /AngularAttack2016_ABMV/.mvn
 /AngularAttack2016_ABMV/target
