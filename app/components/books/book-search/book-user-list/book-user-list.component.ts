@@ -28,7 +28,12 @@ export class BookUserComponent implements OnInit {
     doSearch() {
         this.textSearch = this.routeParams.get('query');
         if (this.textSearch) {
-            this._bookService.getBooks(this.textSearch)
+            this._bookService.getUserBooks(this.textSearch)
+                .subscribe(data => {
+                    this.listResults = data;
+                });
+        } else {
+             this._bookService.getAllUserBooks()
                 .subscribe(data => {
                     this.listResults = data;
                 });

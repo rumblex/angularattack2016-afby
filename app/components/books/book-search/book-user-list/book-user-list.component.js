@@ -29,7 +29,13 @@ var BookUserComponent = (function () {
         var _this = this;
         this.textSearch = this.routeParams.get('query');
         if (this.textSearch) {
-            this._bookService.getBooks(this.textSearch)
+            this._bookService.getUserBooks(this.textSearch)
+                .subscribe(function (data) {
+                _this.listResults = data;
+            });
+        }
+        else {
+            this._bookService.getAllUserBooks()
                 .subscribe(function (data) {
                 _this.listResults = data;
             });

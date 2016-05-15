@@ -40,6 +40,12 @@ var BookService = (function () {
     BookService.prototype.getUsersForBook = function (id) {
         return Observable_1.Observable.of(this.listUser);
     };
+    BookService.prototype.getUserBooks = function (searchString) {
+        return Observable_1.Observable.of(this.listBooks);
+    };
+    BookService.prototype.getAllUserBooks = function () {
+        return Observable_1.Observable.of(this.listBooks);
+    };
     BookService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
